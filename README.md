@@ -29,13 +29,19 @@ I am a highly analytical Software Engineer with a focus on building and maintain
 
 ---
 
-### 📊 GitHub Stats & Activity
-
+### 📊 My GitHub Metrics
 
 <p align="left">
-  <img src="https://github-readme-stats.vercel.app/api?username=vauzi&show_icons=true&theme=tokyonight&hide_border=true" height="150" alt="stats card" />
-  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=vauzi&layout=compact&theme=tokyonight&hide_border=true" height="150" alt="languages card" />
+  <img src="https://github-readme-stats.vercel.app/api?username=vauzi&show_icons=true&theme=transparent&rank_icon=github&border_radius=10" height="170" alt="Isman Vauzi Stats" />
+  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=vauzi&layout=compact&theme=transparent&border_radius=10&hide=html,css" height="170" alt="Top Languages" />
 </p>
+
+---
+
+### 🛠 Tech Stack Highlights
+* **Backend:** Golang (Gin, Echo), gRPC, Protobuf
+* **Infrastructure:** Docker, RabbitMQ, Elasticsearch
+* **Databases:** PostgreSQL, MySQL, Redis, MongoDB
 
 ---
 
