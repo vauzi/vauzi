@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    
+    <link rel="icon" type="image/png" href="public/myLogo.png">
+    <link rel="apple-touch-icon" href="public/myLogo.png">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Isman Vauzi | Software Engineer Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+        .glass { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.05); }
+        .gradient-text { background: linear-gradient(90deg, #3b82f6, #60a5fa); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    
+        /* Animasi masuk untuk link menu */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .animate-item {
+            opacity: 0; /* Mulai dari transparan */
+            animation: fadeInUp 0.5s ease forwards;
+        }
+
+        /* Staggered Delay: Memberikan jeda antar item */
+        .delay-1 { animation-delay: 0.1s; }
+        .delay-2 { animation-delay: 0.2s; }
+        .delay-3 { animation-delay: 0.3s; }
+        .delay-4 { animation-delay: 0.4s; }
+        .delay-5 { animation-delay: 0.5s; }
+
+        /* Animasi rotasi ikon hamburger ke X */
+        .rotate-icon {
+            transition: transform 0.3s ease-in-out;
+        }
+    </style>
+    
+</head>
+<body class="bg-[#030712] text-gray-300">
+
+    <nav class="fixed w-full z-50 top-0 glass border-b border-gray-800 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#home" class="flex items-center">
+                <img src="public/myLogo.png" alt="Isman Vauzi Logo" class="h-10 w-auto hover:scale-105 transition-transform duration-300">
+            </a>
+            
+            <div class="hidden md:flex items-center gap-8">
+                <div class="flex space-x-8 text-sm font-medium">
+                    <a href="#home" class="text-gray-300 hover:text-blue-400 transition light:text-gray-700">Home</a>
+                    <a href="#about" class="text-gray-300 hover:text-blue-400 transition light:text-gray-700">About</a>
+                    <a href="#experience" class="text-gray-300 hover:text-blue-400 transition light:text-gray-700">Experience</a>
+                    <a href="#skills" class="text-gray-300 hover:text-blue-400 transition light:text-gray-700">Skills</a>
+                </div>
+
+                <div class="flex items-center gap-4 border-l border-gray-700 pl-6">
+                    <button onclick="toggleTheme()" class="p-2 rounded-xl glass hover:scale-110 transition-all duration-300">
+                        <i data-lucide="moon" class="w-5 h-5 text-yellow-400 block dark:block" id="moon-icon"></i>
+                        <i data-lucide="sun" class="w-5 h-5 text-orange-500 hidden" id="sun-icon"></i>
+                    </button>
+                    <a href="#contact" class="px-5 py-2.5 bg-blue-600 text-white text-sm font-bold rounded-full hover:bg-blue-700 transition shadow-lg shadow-blue-600/20">
+                        Contact Me
+                    </a>
+                </div>
+            </div>
+
+            <div class="flex items-center gap-4 md:hidden">
+                <button onclick="toggleTheme()" class="p-2 rounded-lg glass">
+                    <i data-lucide="moon" class="w-5 h-5 text-yellow-400 dark:block" id="moon-icon-mob"></i>
+                    <i data-lucide="sun" class="w-5 h-5 text-orange-500 hidden" id="sun-icon-mob"></i>
+                </button>
+                <button id="menu-btn" class="p-2 text-white light:text-gray-900 focus:outline-none">
+                    <i data-lucide="menu" id="menu-icon" class="w-7 h-7"></i>
+                    <i data-lucide="x" id="close-icon" class="w-7 h-7 hidden"></i>
+                </button>
+            </div>
+        </div>
+
+        <div id="mobile-menu" class="md:hidden absolute w-full left-0 glass border-b border-gray-800 transition-all duration-500 ease-in-out transform -translate-y-full opacity-0 pointer-events-none">
+            <div class="flex flex-col px-6 py-10 space-y-6 text-center font-bold bg-[#030712]/95 backdrop-blur-xl">
+                <a href="#home" class="mobile-link text-xl text-gray-300">Home</a>
+                <a href="#about" class="mobile-link text-xl text-gray-300">About</a>
+                <a href="#experience" class="mobile-link text-xl text-gray-300">Experience</a>
+                <a href="#skills" class="mobile-link text-xl text-gray-300">Skills</a>
+                <a href="#contact" class="mobile-link py-4 bg-blue-600 text-white rounded-2xl">Contact Me</a>
+            </div>
+        </div>
+    </nav>
+
+    <section id="home" class="min-h-screen flex items-center justify-center pt-20 overflow-hidden">
+        <div class="absolute w-96 h-96 bg-blue-600/20 rounded-full blur-[120px] -top-20 -left-20"></div>
+        <div class="max-w-7xl mx-auto px-6 text-center z-10" data-aos="fade-up">
+            <h2 class="text-blue-400 font-bold tracking-widest text-sm mb-4 uppercase">Software Engineer</h2>
+            <h1 class="text-5xl md:text-8xl font-extrabold text-white mb-6 tracking-tight">
+                Building Scalable <br> <span class="gradient-text">Financial Systems.</span>
+            </h1>
+            <p class="max-w-2xl mx-auto text-lg text-gray-400 mb-10">
+                Specialized in <strong>Golang</strong> and <strong>Microservices</strong>. Experienced in maintaining high-volume banking systems with 99.9% uptime.
+            </p>
+            <div class="flex flex-wrap justify-center gap-4">
+                <a href="#experience" class="px-8 py-4 bg-white text-black font-bold rounded-xl hover:bg-gray-200 transition">View Works</a>
+                <a href="cv.html" class="px-8 py-4 glass text-white font-bold rounded-xl hover:bg-white/10 transition flex items-center gap-2 group">
+                    <i data-lucide="file-text" class="w-5 h-5 group-hover:scale-110 transition-transform"></i>
+                    <span>View Resume</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <div class="max-w-7xl mx-auto px-6 py-10">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-8 glass p-10 rounded-3xl" data-aos="fade-up">
+            <div class="text-center">
+                <h3 class="text-4xl font-bold text-white mb-2">2+</h3>
+                <p class="text-sm text-gray-500 uppercase">Years Exp</p>
+            </div>
+            <div class="text-center">
+                <h3 class="text-4xl font-bold text-white mb-2">99.9%</h3>
+                <p class="text-sm text-gray-500 uppercase">System Uptime</p>
+            </div>
+            <div class="text-center">
+                <h3 class="text-4xl font-bold text-white mb-2">10+</h3>
+                <p class="text-sm text-gray-500 uppercase">Tech Stack</p>
+            </div>
+            <div class="text-center">
+                <h3 class="text-4xl font-bold text-white mb-2">Bank BRI</h3>
+                <p class="text-sm text-gray-500 uppercase">Major Projects</p>
+            </div>
+        </div>
+    </div>
+
+    <section id="about" class="py-24 relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid md:grid-cols-2 gap-16 items-center">
+                
+                <div class="relative" data-aos="fade-right">
+                    <div class="aspect-square rounded-3xl overflow-hidden glass p-2 relative z-10">
+                        <div class="w-full h-full rounded-2xl bg-gradient-to-br from-blue-600 to-indigo-900 flex items-center justify-center overflow-hidden relative group">
+                            
+                            <img src="./public/myPhotos.jpeg" alt="Isman Vauzi" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+
+                            <div class="absolute inset-0 bg-gradient-to-t from-blue-900/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
+                                <h3 class="text-xl font-bold text-white">Isman Vauzi</h3>
+                                <p class="text-blue-200 text-xs font-medium">Software Engineer</p>
+                            </div>
+
+                            <i data-lucide="user" class="w-32 h-32 text-white/10 absolute -z-10"></i>
+                        </div>
+                    </div>
+                    
+                    <div class="absolute -bottom-6 -right-6 w-32 h-32 bg-blue-600 rounded-2xl -z-0 animate-pulse"></div>
+                    <div class="absolute -top-6 -left-6 w-24 h-24 border-2 border-blue-500/30 rounded-full -z-0"></div>
+                </div>
+
+                <div data-aos="fade-left">
+                    <h2 class="text-blue-400 font-bold tracking-widest text-sm mb-4 uppercase">About Me</h2>
+                    <h3 class="text-4xl font-extrabold text-white light:text-gray-900 mb-6 leading-tight">
+                        Bridging the gap between <span class="text-blue-500">Business Needs</span> and Technical Excellence.
+                    </h3>
+                    <p class="text-gray-400 light:text-gray-600 mb-6 leading-relaxed">
+                        I am a Software Engineer passionate about developing high-performance backend systems and maintaining large-scale application stability. With extensive experience in the banking ecosystem, I specialize in managing high-volume transactions that demand absolute accuracy and <strong>99.9% system availability</strong>.
+                    </p>
+                    <p class="text-gray-400 light:text-gray-600 mb-8 leading-relaxed">
+                        My core expertise lies in <strong>Golang</strong> and <strong>Microservices architecture</strong>. I thrive in environments that require deep technical analysis, database optimization, and proactive system monitoring to ensure seamless financial operations for enterprise-level platforms.
+                    </p>
+
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="glass p-5 rounded-2xl border-l-4 border-blue-500">
+                            <h4 class="text-white light:text-gray-900 font-bold mb-1">Analytical Mindset</h4>
+                            <p class="text-xs text-gray-500">Specialized in Root Cause Analysis & Debugging</p>
+                        </div>
+                        <div class="glass p-5 rounded-2xl border-l-4 border-indigo-500">
+                            <h4 class="text-white light:text-gray-900 font-bold mb-1">Modern Stack</h4>
+                            <p class="text-xs text-gray-500">Go, gRPC, Docker, & Message Brokers</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="experience" class="py-24">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex justify-between items-end mb-16">
+                <div>
+                    <h2 class="text-4xl font-bold text-white light:text-gray-900">Experience</h2>
+                    <div class="h-1.5 w-20 bg-blue-600 mt-2 rounded-full"></div>
+                </div>
+                <p class="text-blue-400 font-medium hidden md:block uppercase tracking-widest text-sm">Professional Journey</p>
+            </div>
+            
+            <div class="space-y-10">
+                <div class="glass p-8 md:p-10 rounded-[2.5rem] hover:border-blue-500/50 transition-all duration-500 group" data-aos="fade-up">
+                    <div class="flex flex-col md:flex-row md:justify-between mb-8 border-b border-gray-800 pb-6">
+                        <div>
+                            <h3 class="text-2xl font-bold text-white group-hover:text-blue-400 transition mb-1">Application Support Engineer</h3>
+                            <p class="text-blue-500 font-bold text-sm tracking-wide">ORDENT — QLOLA BANK BRI (Cash Management & Ibbiz)</p>
+                        </div>
+                        <div class="mt-4 md:mt-0 md:text-right">
+                            <span class="bg-blue-600/10 text-blue-400 px-4 py-1.5 rounded-full text-xs font-bold border border-blue-500/20">JAN 2024 — PRESENT</span>
+                        </div>
+                    </div>
+                    
+                    <div class="grid md:grid-cols-2 gap-x-12 gap-y-4">
+                        <div class="space-y-4">
+                            <div class="flex gap-4">
+                                <i data-lucide="shield-check" class="text-blue-500 w-6 h-6 flex-shrink-0"></i>
+                                <p class="text-sm text-gray-400 leading-relaxed">
+                                    <strong class="text-gray-200">System Reliability:</strong> Managed production stability for high-traffic corporate banking platforms, ensuring 99.9% uptime for mission-critical financial operations.
+                                </p>
+                            </div>
+                            <div class="flex gap-4">
+                                <i data-lucide="search" class="text-blue-500 w-6 h-6 flex-shrink-0"></i>
+                                <p class="text-sm text-gray-400 leading-relaxed">
+                                    <strong class="text-gray-200">Incident Management:</strong> Led deep-dive <strong>Root Cause Analysis (RCA)</strong> for complex transaction failures, reducing recurring issues through technical optimization.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="space-y-4">
+                            <div class="flex gap-4">
+                                <i data-lucide="activity" class="text-blue-500 w-6 h-6 flex-shrink-0"></i>
+                                <p class="text-sm text-gray-400 leading-relaxed">
+                                    <strong class="text-gray-200">Data Integrity:</strong> Monitored financial transaction flows and analyzed gRPC/Protobuf logs to ensure 100% accuracy in sensitive data processing.
+                                </p>
+                            </div>
+                            <div class="flex gap-4">
+                                <i data-lucide="zap" class="text-blue-500 w-6 h-6 flex-shrink-0"></i>
+                                <p class="text-sm text-gray-400 leading-relaxed">
+                                    <strong class="text-gray-200">Operations:</strong> Controlled high-risk production deployments and hotfixes while maintaining strict banking security compliance.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="glass p-8 md:p-10 rounded-[2.5rem] hover:border-blue-500/50 transition-all duration-500 group" data-aos="fade-up" data-aos-delay="100">
+                    <div class="flex flex-col md:flex-row md:justify-between mb-8 border-b border-gray-800 pb-6">
+                        <div>
+                            <h3 class="text-2xl font-bold text-white group-hover:text-blue-400 transition mb-1">Backend Engineer</h3>
+                            <p class="text-blue-500 font-bold text-sm tracking-wide">ORDENT</p>
+                        </div>
+                        <div class="mt-4 md:mt-0 md:text-right">
+                            <span class="bg-gray-800 text-gray-400 px-4 py-1.5 rounded-full text-xs font-bold border border-gray-700">JUN 2023 — JAN 2024</span>
+                        </div>
+                    </div>
+
+                    <div class="grid md:grid-cols-2 gap-x-12 gap-y-4">
+                        <div class="space-y-4">
+                            <div class="flex gap-4">
+                                <i data-lucide="code-2" class="text-blue-500 w-6 h-6 flex-shrink-0"></i>
+                                <p class="text-sm text-gray-400 leading-relaxed">
+                                    <strong class="text-gray-200">API Engineering:</strong> Developed and maintained scalable REST and gRPC APIs using <strong>Golang</strong> for corporate cash management systems.
+                                </p>
+                            </div>
+                            <div class="flex gap-4">
+                                <i data-lucide="database-zap" class="text-blue-500 w-6 h-6 flex-shrink-0"></i>
+                                <p class="text-sm text-gray-400 leading-relaxed">
+                                    <strong class="text-gray-200">Performance:</strong> Optimized complex PostgreSQL queries and indexing strategies, resulting in significantly faster response times for data-heavy requests.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="space-y-4">
+                            <div class="flex gap-4">
+                                <i data-lucide="share-2" class="text-blue-500 w-6 h-6 flex-shrink-0"></i>
+                                <p class="text-sm text-gray-400 leading-relaxed">
+                                    <strong class="text-gray-200">Integration:</strong> Spearheaded third-party API integrations while adhering to strict financial security protocols and regulatory requirements.
+                                </p>
+                            </div>
+                            <div class="flex gap-4">
+                                <i data-lucide="git-branch" class="text-blue-500 w-6 h-6 flex-shrink-0"></i>
+                                <p class="text-sm text-gray-400 leading-relaxed">
+                                    <strong class="text-gray-200">Architecture:</strong> Designed and implemented clean, maintainable code within a <strong>Microservices architecture</strong> using Gin and Echo frameworks.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills" class="py-24 bg-[#050a18]">
+        <div class="max-w-7xl mx-auto px-6">
+            <h2 class="text-4xl font-bold text-white mb-16 text-center">Technical Arsenal</h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="glass p-8 rounded-3xl" data-aos="zoom-in">
+                    <i data-lucide="terminal" class="w-10 h-10 text-blue-500 mb-6"></i>
+                    <h3 class="text-xl font-bold text-white mb-4">Languages</h3>
+                    <div class="flex flex-wrap gap-2 text-sm">
+                        <span class="bg-blue-600/10 text-blue-400 px-3 py-1 rounded-full border border-blue-500/20">Golang</span>
+                        <span class="bg-blue-600/10 text-blue-400 px-3 py-1 rounded-full border border-blue-500/20">TypeScript</span>
+                        <span class="bg-blue-600/10 text-blue-400 px-3 py-1 rounded-full border border-blue-500/20">PHP</span>
+                        <span class="bg-blue-600/10 text-blue-400 px-3 py-1 rounded-full border border-blue-500/20">SQL</span>
+                    </div>
+                </div>
+                <div class="glass p-8 rounded-3xl" data-aos="zoom-in" data-aos-delay="100">
+                    <i data-lucide="layers" class="w-10 h-10 text-blue-500 mb-6"></i>
+                    <h3 class="text-xl font-bold text-white mb-4">Infrastructure</h3>
+                    <div class="flex flex-wrap gap-2 text-sm">
+                        <span class="bg-blue-600/10 text-blue-400 px-3 py-1 rounded-full border border-blue-500/20">Docker</span>
+                        <span class="bg-blue-600/10 text-blue-400 px-3 py-1 rounded-full border border-blue-500/20">RabbitMQ</span>
+                        <span class="bg-blue-600/10 text-blue-400 px-3 py-1 rounded-full border border-blue-500/20">Elasticsearch</span>
+                        <span class="bg-blue-600/10 text-blue-400 px-3 py-1 rounded-full border border-blue-500/20">gRPC</span>
+                    </div>
+                </div>
+                <div class="glass p-8 rounded-3xl" data-aos="zoom-in" data-aos-delay="200">
+                    <i data-lucide="database" class="w-10 h-10 text-blue-500 mb-6"></i>
+                    <h3 class="text-xl font-bold text-white mb-4">Databases</h3>
+                    <div class="flex flex-wrap gap-2 text-sm">
+                        <span class="bg-blue-600/10 text-blue-400 px-3 py-1 rounded-full border border-blue-500/20">PostgreSQL</span>
+                        <span class="bg-blue-600/10 text-blue-400 px-3 py-1 rounded-full border border-blue-500/20">MySQL</span>
+                        <span class="bg-blue-600/10 text-blue-400 px-3 py-1 rounded-full border border-blue-500/20">Redis</span>
+                        <span class="bg-blue-600/10 text-blue-400 px-3 py-1 rounded-full border border-blue-500/20">MongoDB</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer id="contact" class="py-24">
+        <div class="max-w-7xl mx-auto px-6 text-center">
+            <h2 class="text-5xl font-extrabold text-white mb-8">Ready to Collaborate?</h2>
+            <p class="text-gray-400 mb-12">I'm currently available for new opportunities and collaborations.</p>
+            <div class="flex justify-center space-x-6">
+                <a href="https://linkedin.com/in/isman-vauzi" target="_blank" class="w-12 h-12 glass rounded-full flex items-center justify-center hover:bg-blue-600 transition">
+                    <i data-lucide="linkedin" class="w-5 h-5 text-white"></i>
+                </a>
+                <a href="mailto:ismanvauzi1998@gmail.com?subject=Tanya%20Project%20Backend&body=Halo%20Isman,%20saya%20tertarik%20bekerja%20sama%20dengan%20Anda." 
+                class="w-12 h-12 glass rounded-full flex items-center justify-center hover:bg-blue-600 transition group"
+                title="Kirim Email">
+                    <i data-lucide="mail" class="w-5 h-5 text-white group-hover:scale-110 transition-transform"></i>
+                </a>
+                <a href="https://wa.me/6285158007836?text=Halo%20Isman,%20saya%20tertarik%20dengan%20portfolio%20Anda." 
+                target="_blank" 
+                class="w-12 h-12 glass rounded-full flex items-center justify-center hover:bg-[#25D366] transition-all duration-300 group shadow-lg"
+                title="Chat via WhatsApp">
+                    <svg 
+                        class="w-6 h-6 fill-white transition-transform duration-300 group-hover:scale-110" 
+                        viewBox="0 0 24 24" 
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-4.821 7.603c-1.907 0-3.776-.511-5.41-1.478l-.39-.232-4.018 1.053 1.073-3.912-.254-.405A9.957 9.957 0 012.1 12.004c0-5.513 4.487-10 10-10 2.67 0 5.18 1.04 7.07 2.93a9.93 9.93 0 012.93 7.07c0 5.513-4.48 10-10 10"/>
+                    </svg>
+                </a>
+            </div>
+            <p class="mt-20 text-sm text-gray-600 uppercase tracking-widest font-bold">© 2026 Isman Vauzi. Built with passion.</p>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+    <script src="index.js"></script>
+    <script type="application/ld+json">
+        {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Isman Vauzi",
+        "alternateName": ["Isman Fauzi", "Isma", "Vauzi"],
+        "url": "https://username.github.io",
+        "sameAs": [
+            "https://linkedin.com/in/ismanvauzi",
+            "https://github.com/ismanvauzi"
+        ]
+        }
+    </script>
+</body>
+</html>
