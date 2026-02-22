@@ -31,6 +31,7 @@ I am a highly analytical Software Engineer with a focus on building and maintain
 
 ### 📊 GitHub Stats & Activity
 
+
 <p align="left">
   <img src="https://github-readme-stats.vercel.app/api?username=vauzi&show_icons=true&theme=tokyonight&hide_border=true" height="150" alt="stats card" />
   <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=vauzi&layout=compact&theme=tokyonight&hide_border=true" height="150" alt="languages card" />
