@@ -27,7 +27,7 @@ I am a highly analytical Software Engineer with a focus on building and maintain
 
 | Role | Project / Company | Period |
 | :--- | :--- | :--- |
-| **Application Support Engineer** | QLOLA Bank BRI (ORDENT) | Jan 2024 — Present |
+| **Application Support Engineer** | QLOLA (Qcash & IBBIZ) Bank BRI (ORDENT) | Jan 2024 — Present |
 | **Backend Engineer** | Corporate Cash Management (ORDENT) | Jun 2023 — Jan 2024 |
 
 **Key Contributions:**
@@ -39,6 +39,7 @@ I am a highly analytical Software Engineer with a focus on building and maintain
 
 ### 📫 Get in Touch
 
+[![WhatsApp](https://img.shields.io/badge/WhatsApp-25D366?style=for-the-badge&logo=whatsapp&logoColor=white)](https://wa.me/6285158007835)
 [![LinkedIn](https://img.shields.io/badge/linkedin-%230077B5.svg?style=for-the-badge&logo=linkedin&logoColor=white)](https://linkedin.com/in/isman-vauzi)
 [![Portfolio](https://img.shields.io/badge/Portfolio-FF5722?style=for-the-badge&logo=google-chrome&logoColor=white)](https://vauzi.github.io/vauzi/)
 [![Email](https://img.shields.io/badge/Email-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:ismanvauzi1998@gmail.com)
