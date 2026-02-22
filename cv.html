@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <link rel="icon" type="image/png" href="public/myLogo.png">
+  <link rel="apple-touch-icon" href="public/myLogo.png">
+
+  <title>Isman Vauzi | Software Engineer CV</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+  tailwind.config = {
+    darkMode: 'class',
+    theme: { extend: { colors: { primary: "#1e3a8a" } } }
+  }
+  </script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+    body { font-family: 'Inter', sans-serif; }
+    .fade-in { opacity: 0; transform: translateY(10px); transition: all 0.5s ease; }
+    .fade-in.visible { opacity: 1; transform: translateY(0); }
+    @media print { .no-print { display: none; } }
+  </style>
+</head>
+<body class="bg-gray-100 text-gray-800 dark:bg-gray-900 dark:text-gray-200 transition-colors duration-300">
+
+<div class="fixed top-12 left-8 z-50">
+    <a href="index.html" class="flex items-center gap-2 px-4 py-2 glass rounded-xl text-gray-500 hover:text-white hover:bg-blue-600 transition-all duration-300 group shadow-lg shadow-blue-900/20">
+        <i data-lucide="arrow-left" class="w-5 h-5 group-hover:-translate-x-1 transition-transform"></i>
+        <span class="text-sm font-bold uppercase tracking-wider">Back to Portfolio</span>
+    </a>
+</div>
+
+<div id="cv-wrapper" class="py-10">
+  <div id="cv-content" class="max-w-[210mm] mx-auto bg-white dark:bg-gray-800 shadow-2xl px-[15mm] py-[15mm] transition-all duration-300">
+    
+    <div class="flex justify-between items-start border-b-4 border-primary pb-6 mb-8">
+      <div>
+        <h1 class="text-4xl font-extrabold text-primary dark:text-blue-400 tracking-tight uppercase">ISMAN VAUZI</h1>
+        <p class="text-xl font-semibold text-gray-600 dark:text-gray-300 mt-1 uppercase tracking-widest">Software Engineer</p>
+      </div>
+      <div class="text-right text-[13px] leading-relaxed font-medium">
+        <p>ismanvauzi1998@gmail.com 📧</p>
+        <p>+62 851-5800-7835 📱</p>
+        <p>Jakarta, Indonesia 📍</p>
+        <p>linkedin.com/in/isman-vauzi 🔗</p>
+      </div>
+    </div>
+
+    <div id="action-buttons" class="flex gap-3 mb-6 justify-end no-print">
+      <button onclick="toggleDarkMode()" class="px-4 py-2 text-xs font-bold rounded-lg border dark:border-gray-600 hover:bg-gray-200 dark:hover:bg-gray-700 transition">🌙 MODE</button>
+      <button onclick="downloadPDF()" class="px-4 py-2 text-xs font-bold bg-primary text-white rounded-lg hover:opacity-90 shadow-md transition">⬇ DOWNLOAD PDF</button>
+    </div>
+
+    <section class="mb-8 fade-in">
+      <h2 class="text-md font-bold text-primary dark:text-blue-400 mb-2 uppercase border-b border-gray-200 pb-1">Professional Summary</h2>
+      <p class="text-[13px] leading-relaxed text-justify">
+        Highly analytical Software Engineer with strong experience in high-volume banking transaction systems. Specialized in <strong>Golang</strong>, <strong>Microservices architecture</strong>, and production system monitoring. Proven track record in maintaining 99.9% system uptime for mission-critical financial environments (QLOLA Bank BRI), troubleshooting complex transaction flows, and optimizing backend performance.
+      </p>
+    </section>
+
+    <section class="mb-8 fade-in">
+      <h2 class="text-md font-bold text-primary dark:text-blue-400 mb-4 uppercase border-b border-gray-200 pb-1">Work Experience</h2>
+      
+      <div class="mb-6">
+        <div class="flex justify-between font-bold text-[14px]">
+          <span>ORDENT — Application Support Engineer</span>
+          <span class="text-gray-500 text-[12px]">Jan 2024 – Present</span>
+        </div>
+        <p class="text-[12px] italic text-primary mb-2 uppercase font-semibold">Project: QLOLA Q-Cash Management & QLOLA Ibbiz (BANK BRI)</p>
+        <ul class="list-disc list-outside text-[12px] space-y-1.5 ml-5 text-justify">
+          <li><strong>System Reliability:</strong> Monitored and supported high-volume production applications to ensure maximum availability, stability, and quick responsiveness.</li>
+          <li><strong>Incident Management:</strong> Conducted deep-dive troubleshooting and <strong>Root Cause Analysis (RCA)</strong> to efficiently identify and resolve production bugs.</li>
+          <li><strong>Operations:</strong> Executed application deployments and system patching in production environments, ensuring smooth updates with minimal disruption.</li>
+          <li><strong>Data Monitoring:</strong> Analyzed system logs and financial transactions to maintain accuracy, consistency, and reliability in transaction processing.</li>
+          <li><strong>Technical Collaboration:</strong> Provided technical support to cross-functional teams and documented issues/solutions to build a sustainable knowledge base.</li>
+        </ul>
+      </div>
+
+      <div>
+        <div class="flex justify-between font-bold text-[14px]">
+          <span>ORDENT — Backend Engineer</span>
+          <span class="text-gray-500 text-[12px]">Jun 2023 – Jan 2024</span>
+        </div>
+        <ul class="list-disc list-outside text-[12px] space-y-1.5 ml-5 mt-2 text-justify">
+          <li><strong>API Development:</strong> Engineered robust APIs using <strong>Golang</strong> to support high-volume financial transactions with secure and efficient data exchange.</li>
+          <li><strong>Performance Tuning:</strong> Optimized database queries and improved data retrieval performance to enable real-time processing of sensitive financial data.</li>
+          <li><strong>Integration:</strong> Integrated third-party APIs and services under strict banking compliance standards and regulatory requirements.</li>
+          <li><strong>Maintenance:</strong> Performed proactive troubleshooting and maintained comprehensive documentation (API references, data flows) to support team collaboration.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="mb-8 fade-in">
+      <h2 class="text-md font-bold text-primary dark:text-blue-400 mb-3 uppercase border-b border-gray-200 pb-1">Technical Skills</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-2 text-[12px] leading-relaxed">
+        <p><strong>Programming Languages:</strong> Golang, JavaScript, TypeScript, PHP, SQL</p>
+        <p><strong>Databases:</strong> PostgreSQL, MySQL, MongoDB, Redis</p>
+        <p><strong>Framework & Library:</strong> Laravel, CodeIgniter, ExpressJS, NestJS, Gin, Echo, gRPC, Protobuf, Vue.js, Tailwind CSS, Bootstrap</p>
+        <p><strong>Tools:</strong> Docker, RabbitMQ, Rundeck, Minio, Elasticsearch, Konga, Git, GitHub/Bitbucket, protoc</p>
+        <p><strong>Practices:</strong> Microservices Architecture, SOA, API Development, Unit Testing, System Monitoring</p>
+        <p><strong>Soft Skills:</strong> Problem Solving, Analytical Thinking, Team Collaboration, Time Management, Adaptive Learning</p>
+      </div>
+    </section>
+
+    <div class="grid grid-cols-2 gap-8 fade-in">
+      <section>
+        <h2 class="text-md font-bold text-primary dark:text-blue-400 mb-2 uppercase border-b border-gray-200 pb-1">Education</h2>
+        <div class="text-[12px]">
+          <p class="font-bold text-gray-900 dark:text-white">Lamongan Islamic University</p>
+          <p>B.S. Informatics Engineering (2017–2022) | GPA: 3.27</p>
+          <p class="italic text-gray-500">Thesis: Milkfish Harvest Prediction System using Naive Bayes</p>
+        </div>
+      </section>
+      <section>
+        <h2 class="text-md font-bold text-primary dark:text-blue-400 mb-2 uppercase border-b border-gray-200 pb-1">Learning & Certification</h2>
+        <ul class="text-[12px] space-y-0.5">
+          <li>• Fullstack Developer Bootcamp — Alkademi</li>
+          <li>• Backend Web Developer — Dicoding</li>
+          <li>• Continuous Learning: Distributed Systems</li>
+        </ul>
+      </section>
+    </div>
+
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+<script src="./cv.js"></script>
+
+
+<script src="https://unpkg.com/lucide@latest"></script>
+<script>
+    lucide.createIcons();
+</script>
+</body>
+</html>
