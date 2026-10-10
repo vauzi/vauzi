@@ -1,371 +1,1468 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
     <link rel="icon" type="image/png" href="public/myLogo.png">
     <link rel="apple-touch-icon" href="public/myLogo.png">
-
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Isman Vauzi | Software Engineer Portfolio</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <script src="https://unpkg.com/lucide@latest"></script>
+    <title>Isman Vauzi — Software Engineer & Application Support</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Figtree:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap"
+        rel="stylesheet">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
-        body { font-family: 'Plus Jakarta Sans', sans-serif; }
-        .glass { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.05); }
-        .gradient-text { background: linear-gradient(90deg, #3b82f6, #60a5fa); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-    
-        /* Animasi masuk untuk link menu */
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(15px); }
-            to { opacity: 1; transform: translateY(0); }
+        :root {
+            --bg: #F1F4F8;
+            --surface: #FFFFFF;
+            --ink: #0B1F3A;
+            --muted: #52627A;
+            --line: #D9E0EA;
+            --brand: #0A4DA2;
+            --signal: #E8590C;
+            --ok: #14804A;
+            --code: #0B1F3A;
+            --codetx: #C9D6EA;
+            --display: 'Bricolage Grotesque', system-ui, sans-serif;
+            --body: 'Figtree', system-ui, sans-serif;
+            --mono: 'IBM Plex Mono', ui-monospace, monospace
         }
 
-        .animate-item {
-            opacity: 0; /* Mulai dari transparan */
-            animation: fadeInUp 0.5s ease forwards;
+        @media (prefers-color-scheme:dark) {
+            :root:not([data-theme="light"]) {
+                --bg: #0A1424;
+                --surface: #101D33;
+                --ink: #EAF0FA;
+                --muted: #9AABC4;
+                --line: #223452;
+                --brand: #6EA8FF;
+                --signal: #FF8A4C;
+                --ok: #4ADE80;
+                --code: #07101E;
+                --codetx: #C9D6EA
+            }
         }
 
-        /* Staggered Delay: Memberikan jeda antar item */
-        .delay-1 { animation-delay: 0.1s; }
-        .delay-2 { animation-delay: 0.2s; }
-        .delay-3 { animation-delay: 0.3s; }
-        .delay-4 { animation-delay: 0.4s; }
-        .delay-5 { animation-delay: 0.5s; }
+        :root[data-theme="dark"] {
+            --bg: #0A1424;
+            --surface: #101D33;
+            --ink: #EAF0FA;
+            --muted: #9AABC4;
+            --line: #223452;
+            --brand: #6EA8FF;
+            --signal: #FF8A4C;
+            --ok: #4ADE80;
+            --code: #07101E;
+            --codetx: #C9D6EA
+        }
 
-        /* Animasi rotasi ikon hamburger ke X */
-        .rotate-icon {
-            transition: transform 0.3s ease-in-out;
+        * {
+            box-sizing: border-box;
+            margin: 0
+        }
+
+        :root {
+            padding-top: env(safe-area-inset-top, 0px)
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 84px
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--ink);
+            font: 400 16px/1.65 var(--body);
+            -webkit-font-smoothing: antialiased;
+            padding-bottom: calc(76px + env(safe-area-inset-bottom, 0px))
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none
+        }
+
+        :focus-visible {
+            outline: 2px solid var(--signal);
+            outline-offset: 3px;
+            border-radius: 6px
+        }
+
+        .wrap {
+            max-width: 1080px;
+            margin: 0 auto;
+            padding: 0 22px
+        }
+
+        section {
+            padding: 72px 0
+        }
+
+        h1,
+        h2,
+        h3 {
+            font-family: var(--display);
+            letter-spacing: -.02em;
+            line-height: 1.1
+        }
+
+        h2 {
+            font-size: clamp(1.7rem, 4vw, 2.4rem);
+            font-weight: 800;
+            margin-bottom: 10px
+        }
+
+        .lead {
+            color: var(--muted);
+            max-width: 60ch
+        }
+
+        .mono {
+            font-family: var(--mono)
+        }
+
+        #bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 3px;
+            width: 0;
+            background: var(--signal);
+            z-index: 100
+        }
+
+        /* top nav (desktop) */
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            background: color-mix(in srgb, var(--bg) 88%, transparent);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--line)
+        }
+
+        .hd {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 68px
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-family: var(--display);
+            font-weight: 700
+        }
+
+        .brand i {
+            width: 38px;
+            height: 38px;
+            border-radius: 10px;
+            background: var(--brand);
+            color: #fff;
+            display: grid;
+            place-items: center;
+            font-style: normal;
+            font-size: .9rem
+        }
+
+        .brand small {
+            display: block;
+            font: 400 .75rem var(--body);
+            color: var(--muted)
+        }
+
+        .dnav {
+            display: flex;
+            gap: 26px;
+            font-weight: 500;
+            font-size: .92rem;
+            color: var(--muted)
+        }
+
+        .dnav a {
+            position: relative;
+            padding: 6px 0;
+            transition: color .2s
+        }
+
+        .dnav a::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            height: 2px;
+            width: 100%;
+            background: var(--signal);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform .3s
+        }
+
+        .dnav a:hover,
+        .dnav a.on {
+            color: var(--ink)
+        }
+
+        .dnav a.on::after,
+        .dnav a:hover::after {
+            transform: scaleX(1)
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 20px;
+            border-radius: 10px;
+            font-weight: 600;
+            font-size: .92rem;
+            border: 1px solid var(--line);
+            background: var(--surface);
+            cursor: pointer;
+            font-family: inherit;
+            color: var(--ink);
+            transition: transform .2s, box-shadow .2s, background .2s
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px -10px rgba(11, 31, 58, .4)
+        }
+
+        .btn.pri {
+            background: var(--brand);
+            border-color: var(--brand);
+            color: #fff
+        }
+
+        .btn.pri:hover {
+            background: var(--signal);
+            border-color: var(--signal)
+        }
+
+        .hd .btn {
+            padding: 9px 16px
+        }
+
+        /* hero */
+        .hero {
+            padding: 64px 0 48px
+        }
+
+        .hgrid {
+            display: grid;
+            grid-template-columns: 1.1fr .9fr;
+            gap: 48px;
+            align-items: center
+        }
+
+        .live {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            font-size: .85rem;
+            color: var(--muted);
+            margin-bottom: 22px
+        }
+
+        .dot {
+            width: 9px;
+            height: 9px;
+            border-radius: 50%;
+            background: var(--ok);
+            box-shadow: 0 0 0 0 var(--ok);
+            animation: ping 2s infinite
+        }
+
+        @keyframes ping {
+            70% {
+                box-shadow: 0 0 0 9px transparent
+            }
+
+            100% {
+                box-shadow: 0 0 0 0 transparent
+            }
+        }
+
+        h1 {
+            font-size: clamp(2.3rem, 6vw, 4rem);
+            font-weight: 800;
+            margin-bottom: 20px
+        }
+
+        h1 span {
+            display: block;
+            color: var(--brand);
+            font-weight: 700;
+            font-size: .52em;
+            margin-top: 12px;
+            letter-spacing: -.01em
+        }
+
+        .hero p.lead {
+            font-size: 1.08rem;
+            margin-bottom: 28px
+        }
+
+        .acts {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px
+        }
+
+        .hero .in {
+            opacity: 0;
+            transform: translateY(16px);
+            animation: up .7s cubic-bezier(.2, .7, .2, 1) forwards
+        }
+
+        @keyframes up {
+            to {
+                opacity: 1;
+                transform: none
+            }
+        }
+
+        /* incident console: the one memorable element */
+        .console {
+            background: var(--code);
+            color: var(--codetx);
+            border-radius: 14px;
+            overflow: hidden;
+            box-shadow: 0 30px 60px -30px rgba(10, 77, 162, .55);
+            font-family: var(--mono);
+            font-size: .78rem
+        }
+
+        .console .top {
+            display: flex;
+            gap: 7px;
+            align-items: center;
+            padding: 12px 16px;
+            border-bottom: 1px solid rgba(255, 255, 255, .08);
+            color: #7F93B3
+        }
+
+        .console .top b {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #2B3E5E
+        }
+
+        .console .top span {
+            margin-left: 8px
+        }
+
+        .log {
+            padding: 16px;
+            min-height: 262px
+        }
+
+        .log div {
+            opacity: 0;
+            transform: translateX(-8px);
+            transition: .5s;
+            padding: 4px 0;
+            line-height: 1.5
+        }
+
+        .log div.show {
+            opacity: 1;
+            transform: none
+        }
+
+        .log em {
+            font-style: normal;
+            color: #7F93B3;
+            margin-right: 10px
+        }
+
+        .log .err {
+            color: #FF8A6B
+        }
+
+        .log .ok {
+            color: #5EE29A
+        }
+
+        .log .warn {
+            color: #F5C451
+        }
+
+        .cursor {
+            display: inline-block;
+            width: 7px;
+            height: 13px;
+            background: #5EE29A;
+            vertical-align: -2px;
+            animation: blink 1s steps(1) infinite
+        }
+
+        @keyframes blink {
+            50% {
+                opacity: 0
+            }
+        }
+
+        /* stats */
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            border-top: 1px solid var(--line);
+            border-bottom: 1px solid var(--line);
+            margin-top: 48px
+        }
+
+        .stats div {
+            padding: 22px 18px;
+            border-left: 1px solid var(--line)
+        }
+
+        .stats div:first-child {
+            border-left: 0;
+            padding-left: 0
+        }
+
+        .stats b {
+            display: block;
+            font: 800 1.9rem var(--display);
+            letter-spacing: -.02em
+        }
+
+        .stats span {
+            font-size: .85rem;
+            color: var(--muted)
+        }
+
+        /* reveal */
+        .rv {
+            opacity: 0;
+            transform: translateY(18px);
+            transition: opacity .7s, transform .7s cubic-bezier(.2, .7, .2, 1)
+        }
+
+        .rv.vis {
+            opacity: 1;
+            transform: none
+        }
+
+        /* experience */
+        .tabs {
+            display: inline-flex;
+            background: var(--surface);
+            border: 1px solid var(--line);
+            border-radius: 12px;
+            padding: 4px;
+            margin: 24px 0 8px;
+            position: relative
+        }
+
+        .tabs button {
+            position: relative;
+            z-index: 1;
+            border: 0;
+            background: none;
+            padding: 10px 18px;
+            font: 600 .88rem var(--body);
+            color: var(--muted);
+            cursor: pointer;
+            border-radius: 9px;
+            transition: color .25s
+        }
+
+        .tabs button.on {
+            color: #fff
+        }
+
+        .tabs .pill {
+            position: absolute;
+            top: 4px;
+            bottom: 4px;
+            left: 4px;
+            background: var(--brand);
+            border-radius: 9px;
+            transition: left .3s cubic-bezier(.2, .7, .2, 1), width .3s
+        }
+
+        .role {
+            display: none;
+            animation: fade .45s
+        }
+
+        .role.on {
+            display: block
+        }
+
+        @keyframes fade {
+            from {
+                opacity: 0;
+                transform: translateY(8px)
+            }
+        }
+
+        .role h3 {
+            font-size: 1.5rem;
+            margin: 22px 0 4px
+        }
+
+        .role .meta {
+            color: var(--muted);
+            font-size: .92rem;
+            margin-bottom: 10px
+        }
+
+        .item {
+            display: grid;
+            grid-template-columns: 240px 1fr;
+            gap: 8px 32px;
+            padding: 22px 0;
+            border-top: 1px solid var(--line)
+        }
+
+        .item h4 {
+            font: 700 1rem var(--display)
+        }
+
+        .item p {
+            color: var(--muted);
+            font-size: .95rem
+        }
+
+        .item p strong {
+            display: block;
+            color: var(--ink);
+            font-weight: 600;
+            margin-top: 6px;
+            font-size: .88rem
+        }
+
+        /* case study */
+        .alt {
+            background: var(--surface);
+            border-block: 1px solid var(--line)
+        }
+
+        .tl {
+            list-style: none;
+            padding: 0;
+            margin: 34px 0 40px;
+            position: relative
+        }
+
+        .tl::before {
+            content: "";
+            position: absolute;
+            left: 5px;
+            top: 8px;
+            bottom: 8px;
+            width: 2px;
+            background: var(--line)
+        }
+
+        .tl li {
+            position: relative;
+            padding: 0 0 26px 34px
+        }
+
+        .tl li::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 8px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--surface);
+            border: 3px solid var(--brand)
+        }
+
+        .tl li:last-child::before {
+            border-color: var(--ok)
+        }
+
+        .tl time {
+            font: 500 .8rem var(--mono);
+            color: var(--signal)
+        }
+
+        .tl h4 {
+            font: 700 1.1rem var(--display);
+            margin: 2px 0 4px
+        }
+
+        .tl p {
+            color: var(--muted);
+            max-width: 70ch;
+            font-size: .95rem
+        }
+
+        code {
+            font: .82em var(--mono);
+            background: var(--bg);
+            padding: 2px 6px;
+            border-radius: 5px;
+            border: 1px solid var(--line)
+        }
+
+        .cmp {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px
+        }
+
+        .pane {
+            background: var(--code);
+            color: var(--codetx);
+            border-radius: 12px;
+            padding: 18px;
+            overflow-x: auto
+        }
+
+        .pane h5 {
+            font: 600 .82rem var(--mono);
+            margin-bottom: 12px
+        }
+
+        .pane.b h5 {
+            color: #FF8A6B
+        }
+
+        .pane.a h5 {
+            color: #5EE29A
+        }
+
+        pre {
+            font: .74rem/1.65 var(--mono);
+            white-space: pre
+        }
+
+        .bars {
+            margin-top: 22px;
+            display: grid;
+            gap: 12px
+        }
+
+        .bar {
+            display: grid;
+            grid-template-columns: 90px 1fr 80px;
+            gap: 14px;
+            align-items: center;
+            font-size: .85rem
+        }
+
+        .bar i {
+            height: 12px;
+            border-radius: 99px;
+            background: var(--line);
+            overflow: hidden
+        }
+
+        .bar i u {
+            display: block;
+            height: 100%;
+            width: 0;
+            border-radius: 99px;
+            transition: width 1.4s cubic-bezier(.2, .7, .2, 1)
+        }
+
+        .vis .bar i u {
+            width: var(--w)
+        }
+
+        .bar:first-child u {
+            background: var(--signal)
+        }
+
+        .bar:last-child u {
+            background: var(--ok)
+        }
+
+        .bar b {
+            font-family: var(--mono);
+            text-align: right
+        }
+
+        /* skills */
+        .chips {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin: 22px 0 10px
+        }
+
+        .chips button {
+            border: 1px solid var(--line);
+            background: var(--surface);
+            padding: 8px 16px;
+            border-radius: 99px;
+            font: 500 .85rem var(--body);
+            color: var(--muted);
+            cursor: pointer;
+            transition: .2s
+        }
+
+        .chips button:hover {
+            border-color: var(--brand);
+            color: var(--ink)
+        }
+
+        .chips button.on {
+            background: var(--ink);
+            color: var(--bg);
+            border-color: var(--ink)
+        }
+
+        .sk {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            column-gap: 48px
+        }
+
+        .sk div {
+            padding: 18px 0;
+            border-top: 1px solid var(--line);
+            animation: fade .4s
+        }
+
+        .sk div[hidden] {
+            display: none
+        }
+
+        .sk h4 {
+            font: 700 1.02rem var(--display)
+        }
+
+        .sk h4 small {
+            font: 500 .78rem var(--body);
+            color: var(--brand);
+            margin-left: 8px
+        }
+
+        .sk p {
+            color: var(--muted);
+            font-size: .92rem
+        }
+
+        /* architecture */
+        .flow {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            margin: 34px 0;
+            counter-reset: s
+        }
+
+        .flow div {
+            position: relative;
+            padding: 0 18px 0 0
+        }
+
+        .flow div::before {
+            counter-increment: s;
+            content: counter(s);
+            display: grid;
+            place-items: center;
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            background: var(--brand);
+            color: #fff;
+            font: 600 .85rem var(--mono);
+            margin-bottom: 14px;
+            position: relative;
+            z-index: 1
+        }
+
+        .flow div::after {
+            content: "";
+            position: absolute;
+            top: 17px;
+            left: 34px;
+            right: 0;
+            height: 2px;
+            background: repeating-linear-gradient(90deg, var(--line) 0 6px, transparent 6px 12px)
+        }
+
+        .flow div:last-child::after {
+            display: none
+        }
+
+        .flow h4 {
+            font: 700 1rem var(--display);
+            margin-bottom: 4px
+        }
+
+        .flow p {
+            font-size: .88rem;
+            color: var(--muted)
+        }
+
+        .flow small {
+            display: block;
+            margin-top: 8px;
+            font: 500 .76rem var(--mono);
+            color: var(--signal)
+        }
+
+        .quote {
+            border-left: 3px solid var(--signal);
+            padding: 4px 0 4px 20px;
+            max-width: 64ch
+        }
+
+        .quote b {
+            font: 700 1.15rem var(--display)
+        }
+
+        .quote p {
+            color: var(--muted);
+            margin-top: 4px
+        }
+
+        /* contact */
+        .big {
+            display: block;
+            font: 800 clamp(1.4rem, 4.6vw, 2.8rem) var(--display);
+            letter-spacing: -.02em;
+            margin: 22px 0 28px;
+            word-break: break-all;
+            background: linear-gradient(var(--signal), var(--signal)) 0 100%/0 3px no-repeat;
+            transition: background-size .4s;
+            width: fit-content;
+            max-width: 100%
+        }
+
+        .big:hover {
+            background-size: 100% 3px
+        }
+
+        .facts {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px 32px;
+            margin-top: 32px;
+            color: var(--muted);
+            font-size: .92rem
+        }
+
+        footer {
+            border-top: 1px solid var(--line);
+            padding: 26px 0;
+            color: var(--muted);
+            font-size: .85rem
+        }
+
+        footer .wrap {
+            display: flex;
+            justify-content: space-between;
+            gap: 12px;
+            flex-wrap: wrap
+        }
+
+        #toast {
+            position: fixed;
+            left: 50%;
+            bottom: calc(92px + env(safe-area-inset-bottom, 0px));
+            transform: translate(-50%, 20px);
+            background: var(--ink);
+            color: var(--bg);
+            padding: 12px 18px;
+            border-radius: 10px;
+            font-size: .88rem;
+            opacity: 0;
+            pointer-events: none;
+            transition: .3s;
+            z-index: 90
+        }
+
+        #toast.show {
+            opacity: 1;
+            transform: translate(-50%, 0)
+        }
+
+        /* bottom nav (mobile) */
+        .bnav {
+            display: none
+        }
+
+        @media (max-width:820px) {
+
+            .dnav,
+            .hd .btn {
+                display: none
+            }
+
+            section {
+                padding: 52px 0
+            }
+
+            .hgrid,
+            .cmp,
+            .sk {
+                grid-template-columns: 1fr
+            }
+
+            .stats {
+                grid-template-columns: 1fr 1fr
+            }
+
+            .stats div {
+                padding: 18px 14px
+            }
+
+            .stats div:nth-child(odd) {
+                border-left: 0;
+                padding-left: 0
+            }
+
+            .stats div:nth-child(n+3) {
+                border-top: 1px solid var(--line)
+            }
+
+            .item {
+                grid-template-columns: 1fr
+            }
+
+            .flow {
+                grid-template-columns: 1fr
+            }
+
+            .flow div {
+                padding: 0 0 24px 52px
+            }
+
+            .flow div::before {
+                position: absolute;
+                left: 0;
+                top: 0
+            }
+
+            .flow div::after {
+                top: 34px;
+                bottom: 0;
+                left: 16px;
+                width: 2px;
+                height: auto;
+                right: auto;
+                background: repeating-linear-gradient(var(--line) 0 6px, transparent 6px 12px)
+            }
+
+            .tabs {
+                display: flex
+            }
+
+            .tabs button {
+                flex: 1;
+                padding: 10px 6px;
+                font-size: .8rem
+            }
+
+            .bar {
+                grid-template-columns: 70px 1fr 64px
+            }
+
+            .bnav {
+                display: flex;
+                position: fixed;
+                left: 12px;
+                right: 12px;
+                bottom: calc(10px + env(safe-area-inset-bottom, 0px));
+                z-index: 80;
+                background: var(--surface);
+                border: 1px solid var(--line);
+                border-radius: 20px;
+                padding: 6px;
+                box-shadow: 0 14px 34px -12px rgba(11, 31, 58, .45);
+                justify-content: space-between
+            }
+
+            .bnav a {
+                flex: 1;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 3px;
+                padding: 8px 0;
+                border-radius: 14px;
+                font-size: .68rem;
+                font-weight: 600;
+                color: var(--muted);
+                transition: color .25s, background .25s, transform .25s
+            }
+
+            .bnav svg {
+                width: 22px;
+                height: 22px;
+                fill: none;
+                stroke: currentColor;
+                stroke-width: 1.8;
+                stroke-linecap: round;
+                stroke-linejoin: round;
+                transition: transform .3s cubic-bezier(.3, 1.6, .5, 1)
+            }
+
+            .bnav a.on {
+                color: var(--brand);
+                background: color-mix(in srgb, var(--brand) 12%, transparent)
+            }
+
+            .bnav a.on svg {
+                transform: translateY(-2px) scale(1.12)
+            }
+
+            .bnav a:active {
+                transform: scale(.94)
+            }
+        }
+
+        @media (prefers-reduced-motion:reduce) {
+
+            *,
+            *::before,
+            *::after {
+                animation: none !important;
+                transition: none !important
+            }
+
+            .rv,
+            .hero .in,
+            .log div {
+                opacity: 1;
+                transform: none
+            }
+
+            .bar i u {
+                width: var(--w)
+            }
+
+            html {
+                scroll-behavior: auto
+            }
         }
     </style>
-    
 </head>
-<body class="bg-[#030712] text-gray-300">
 
-    <nav class="fixed w-full z-50 top-0 glass border-b border-gray-800 transition-all duration-300">
-        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="#home" class="flex items-center">
-                <img src="public/myLogo.png" alt="Isman Vauzi Logo" class="h-10 w-auto hover:scale-105 transition-transform duration-300">
-            </a>
-            
-            <div class="hidden md:flex items-center gap-8">
-                <div class="flex space-x-8 text-sm font-medium">
-                    <a href="#home" class="text-gray-300 hover:text-blue-400 transition light:text-gray-700">Home</a>
-                    <a href="#about" class="text-gray-300 hover:text-blue-400 transition light:text-gray-700">About</a>
-                    <a href="#experience" class="text-gray-300 hover:text-blue-400 transition light:text-gray-700">Experience</a>
-                    <a href="#skills" class="text-gray-300 hover:text-blue-400 transition light:text-gray-700">Skills</a>
-                </div>
-
-                <div class="flex items-center gap-4 border-l border-gray-700 pl-6">
-                    <button onclick="toggleTheme()" class="p-2 rounded-xl glass hover:scale-110 transition-all duration-300">
-                        <i data-lucide="moon" class="w-5 h-5 text-yellow-400 block dark:block" id="moon-icon"></i>
-                        <i data-lucide="sun" class="w-5 h-5 text-orange-500 hidden" id="sun-icon"></i>
-                    </button>
-                    <a href="#contact" class="px-5 py-2.5 bg-blue-600 text-white text-sm font-bold rounded-full hover:bg-blue-700 transition shadow-lg shadow-blue-600/20">
-                        Contact Me
-                    </a>
-                </div>
-            </div>
-
-            <div class="flex items-center gap-4 md:hidden">
-                <button onclick="toggleTheme()" class="p-2 rounded-lg glass">
-                    <i data-lucide="moon" class="w-5 h-5 text-yellow-400 dark:block" id="moon-icon-mob"></i>
-                    <i data-lucide="sun" class="w-5 h-5 text-orange-500 hidden" id="sun-icon-mob"></i>
-                </button>
-                <button id="menu-btn" class="p-2 text-white light:text-gray-900 focus:outline-none">
-                    <i data-lucide="menu" id="menu-icon" class="w-7 h-7"></i>
-                    <i data-lucide="x" id="close-icon" class="w-7 h-7 hidden"></i>
-                </button>
-            </div>
+<body>
+    <div id="bar"></div>
+    <header>
+        <div class="wrap hd">
+            <a class="brand" href="#home"><i>IV</i><span>Isman Vauzi<small>Software & Support
+                        Engineer</small></span></a>
+            <nav class="dnav" id="dnav">
+                <a href="#home">Home</a><a href="#experience">Experience</a><a href="#rca">Case study</a><a
+                    href="#skills">Skills</a><a href="#architecture">Architecture</a><a href="#contact">Contact</a>
+            </nav>
+            <a class="btn pri" href="mailto:ismanvauzi1998@gmail.com">Get in touch</a>
         </div>
+    </header>
 
-        <div id="mobile-menu" class="md:hidden absolute w-full left-0 glass border-b border-gray-800 transition-all duration-500 ease-in-out transform -translate-y-full opacity-0 pointer-events-none">
-            <div class="flex flex-col px-6 py-10 space-y-6 text-center font-bold bg-[#030712]/95 backdrop-blur-xl">
-                <a href="#home" class="mobile-link text-xl text-gray-300">Home</a>
-                <a href="#about" class="mobile-link text-xl text-gray-300">About</a>
-                <a href="#experience" class="mobile-link text-xl text-gray-300">Experience</a>
-                <a href="#skills" class="mobile-link text-xl text-gray-300">Skills</a>
-                <a href="#contact" class="mobile-link py-4 bg-blue-600 text-white rounded-2xl">Contact Me</a>
-            </div>
-        </div>
-    </nav>
-
-    <section id="home" class="min-h-screen flex items-center justify-center pt-20 overflow-hidden">
-        <div class="absolute w-96 h-96 bg-blue-600/20 rounded-full blur-[120px] -top-20 -left-20"></div>
-        <div class="max-w-7xl mx-auto px-6 text-center z-10" data-aos="fade-up">
-            <h2 class="text-blue-400 font-bold tracking-widest text-sm mb-4 uppercase">Software Engineer</h2>
-            <h1 class="text-5xl md:text-8xl font-extrabold text-white mb-6 tracking-tight">
-                Building Scalable <br> <span class="gradient-text">Financial Systems.</span>
-            </h1>
-            <p class="max-w-2xl mx-auto text-lg text-gray-400 mb-10">
-                Specialized in <strong>Golang</strong> and <strong>Microservices</strong>. Experienced in maintaining high-volume banking systems with 99.9% uptime.
-            </p>
-            <div class="flex flex-wrap justify-center gap-4">
-                <a href="#experience" class="px-8 py-4 bg-white text-black font-bold rounded-xl hover:bg-gray-200 transition">View Works</a>
-                <a href="cv.html" class="px-8 py-4 glass text-white font-bold rounded-xl hover:bg-white/10 transition flex items-center gap-2 group">
-                    <i data-lucide="file-text" class="w-5 h-5 group-hover:scale-110 transition-transform"></i>
-                    <span>View Resume</span>
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <div class="max-w-7xl mx-auto px-6 py-10">
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-8 glass p-10 rounded-3xl" data-aos="fade-up">
-            <div class="text-center">
-                <h3 class="text-4xl font-bold text-white mb-2">2+</h3>
-                <p class="text-sm text-gray-500 uppercase">Years Exp</p>
-            </div>
-            <div class="text-center">
-                <h3 class="text-4xl font-bold text-white mb-2">99.9%</h3>
-                <p class="text-sm text-gray-500 uppercase">System Uptime</p>
-            </div>
-            <div class="text-center">
-                <h3 class="text-4xl font-bold text-white mb-2">10+</h3>
-                <p class="text-sm text-gray-500 uppercase">Tech Stack</p>
-            </div>
-            <div class="text-center">
-                <h3 class="text-4xl font-bold text-white mb-2">Bank BRI</h3>
-                <p class="text-sm text-gray-500 uppercase">Major Projects</p>
-            </div>
-        </div>
-    </div>
-
-    <section id="about" class="py-24 relative overflow-hidden">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="grid md:grid-cols-2 gap-16 items-center">
-                
-                <div class="relative" data-aos="fade-right">
-                    <div class="aspect-square rounded-3xl overflow-hidden glass p-2 relative z-10">
-                        <div class="w-full h-full rounded-2xl bg-gradient-to-br from-blue-600 to-indigo-900 flex items-center justify-center overflow-hidden relative group">
-                            
-                            <img src="./public/myPhotos.jpeg" alt="Isman Vauzi" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
-
-                            <div class="absolute inset-0 bg-gradient-to-t from-blue-900/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
-                                <h3 class="text-xl font-bold text-white">Isman Vauzi</h3>
-                                <p class="text-blue-200 text-xs font-medium">Software Engineer</p>
-                            </div>
-
-                            <i data-lucide="user" class="w-32 h-32 text-white/10 absolute -z-10"></i>
+    <main>
+        <section class="hero" id="home">
+            <div class="wrap">
+                <div class="hgrid">
+                    <div>
+                        <div class="live in" style="animation-delay:.05s"><span class="dot"></span><span
+                                id="clock">Jakarta, WIB</span></div>
+                        <h1 class="in" style="animation-delay:.15s">Isman Vauzi<span>Software Engineer & Application
+                                Support Specialist</span></h1>
+                        <p class="lead in" style="animation-delay:.3s">I keep high-volume banking systems at QLOLA Bank
+                            BRI running, speed up database queries, and build Golang services that hold up under
+                            transaction spikes.</p>
+                        <div class="acts in" style="animation-delay:.45s">
+                            <a class="btn pri" href="#experience">View experience</a>
+                            <a class="btn" href="cv.html" target="_blank">View CV</a>
                         </div>
                     </div>
-                    
-                    <div class="absolute -bottom-6 -right-6 w-32 h-32 bg-blue-600 rounded-2xl -z-0 animate-pulse"></div>
-                    <div class="absolute -top-6 -left-6 w-24 h-24 border-2 border-blue-500/30 rounded-full -z-0"></div>
-                </div>
-
-                <div data-aos="fade-left">
-                    <h2 class="text-blue-400 font-bold tracking-widest text-sm mb-4 uppercase">About Me</h2>
-                    <h3 class="text-4xl font-extrabold text-white light:text-gray-900 mb-6 leading-tight">
-                        Bridging the gap between <span class="text-blue-500">Business Needs</span> and Technical Excellence.
-                    </h3>
-                    <p class="text-gray-400 light:text-gray-600 mb-6 leading-relaxed">
-                        I am a Software Engineer passionate about developing high-performance backend systems and maintaining large-scale application stability. With extensive experience in the banking ecosystem, I specialize in managing high-volume transactions that demand absolute accuracy and <strong>99.9% system availability</strong>.
-                    </p>
-                    <p class="text-gray-400 light:text-gray-600 mb-8 leading-relaxed">
-                        My core expertise lies in <strong>Golang</strong> and <strong>Microservices architecture</strong>. I thrive in environments that require deep technical analysis, database optimization, and proactive system monitoring to ensure seamless financial operations for enterprise-level platforms.
-                    </p>
-
-                    <div class="grid grid-cols-2 gap-4">
-                        <div class="glass p-5 rounded-2xl border-l-4 border-blue-500">
-                            <h4 class="text-white light:text-gray-900 font-bold mb-1">Analytical Mindset</h4>
-                            <p class="text-xs text-gray-500">Specialized in Root Cause Analysis & Debugging</p>
-                        </div>
-                        <div class="glass p-5 rounded-2xl border-l-4 border-indigo-500">
-                            <h4 class="text-white light:text-gray-900 font-bold mb-1">Modern Stack</h4>
-                            <p class="text-xs text-gray-500">Go, gRPC, Docker, & Message Brokers</p>
-                        </div>
+                    <div class="console in" style="animation-delay:.4s" aria-label="Sample incident handling log">
+                        <div class="top"><b></b><b></b><b></b><span>qlola-qcash-gw / incident.log</span></div>
+                        <div class="log" id="log"></div>
                     </div>
                 </div>
-
-            </div>
-        </div>
-    </section>
-
-    <section id="experience" class="py-24">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="flex justify-between items-end mb-16">
-                <div>
-                    <h2 class="text-4xl font-bold text-white light:text-gray-900">Experience</h2>
-                    <div class="h-1.5 w-20 bg-blue-600 mt-2 rounded-full"></div>
-                </div>
-                <p class="text-blue-400 font-medium hidden md:block uppercase tracking-widest text-sm">Professional Journey</p>
-            </div>
-            
-            <div class="space-y-10">
-                <div class="glass p-8 md:p-10 rounded-[2.5rem] hover:border-blue-500/50 transition-all duration-500 group" data-aos="fade-up">
-                    <div class="flex flex-col md:flex-row md:justify-between mb-8 border-b border-gray-800 pb-6">
-                        <div>
-                            <h3 class="text-2xl font-bold text-white group-hover:text-blue-400 transition mb-1">Application Support Engineer</h3>
-                            <p class="text-blue-500 font-bold text-sm tracking-wide">ORDENT — QLOLA BANK BRI (Cash Management & Ibbiz)</p>
-                        </div>
-                        <div class="mt-4 md:mt-0 md:text-right">
-                            <span class="bg-blue-600/10 text-blue-400 px-4 py-1.5 rounded-full text-xs font-bold border border-blue-500/20">JAN 2024 — PRESENT</span>
-                        </div>
+                <div class="stats rv">
+                    <div><b data-n="99.9" data-d="1" data-s="%">99.9%</b><span>Production uptime</span></div>
+                    <div><b data-n="250" data-p="&lt; " data-s=" ms">&lt; 250 ms</b><span>P95 API latency</span></div>
+                    <div><b data-n="15" data-p="&lt; " data-s=" min">&lt; 15 min</b><span>MTTR (down from 45 min)</span>
                     </div>
-                    
-                    <div class="grid md:grid-cols-2 gap-x-12 gap-y-4">
-                        <div class="space-y-4">
-                            <div class="flex gap-4">
-                                <i data-lucide="shield-check" class="text-blue-500 w-6 h-6 flex-shrink-0"></i>
-                                <p class="text-sm text-gray-400 leading-relaxed">
-                                    <strong class="text-gray-200">System Reliability:</strong> Managed production stability for high-traffic corporate banking platforms, ensuring 99.9% uptime for mission-critical financial operations.
-                                </p>
-                            </div>
-                            <div class="flex gap-4">
-                                <i data-lucide="search" class="text-blue-500 w-6 h-6 flex-shrink-0"></i>
-                                <p class="text-sm text-gray-400 leading-relaxed">
-                                    <strong class="text-gray-200">Incident Management:</strong> Led deep-dive <strong>Root Cause Analysis (RCA)</strong> for complex transaction failures, reducing recurring issues through technical optimization.
-                                </p>
-                            </div>
-                        </div>
-                        <div class="space-y-4">
-                            <div class="flex gap-4">
-                                <i data-lucide="activity" class="text-blue-500 w-6 h-6 flex-shrink-0"></i>
-                                <p class="text-sm text-gray-400 leading-relaxed">
-                                    <strong class="text-gray-200">Data Integrity:</strong> Monitored financial transaction flows and analyzed gRPC/Protobuf logs to ensure 100% accuracy in sensitive data processing.
-                                </p>
-                            </div>
-                            <div class="flex gap-4">
-                                <i data-lucide="zap" class="text-blue-500 w-6 h-6 flex-shrink-0"></i>
-                                <p class="text-sm text-gray-400 leading-relaxed">
-                                    <strong class="text-gray-200">Operations:</strong> Controlled high-risk production deployments and hotfixes while maintaining strict banking security compliance.
-                                </p>
-                            </div>
-                        </div>
+                    <div><b>Millions</b><span>Daily transactions</span></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="experience" class="alt">
+            <div class="wrap">
+                <h2 class="rv">Work experience</h2>
+                <p class="lead rv">High-performance backend, production operations, and banking platforms that cannot go
+                    down.</p>
+                <div class="tabs rv" id="tabs"><span class="pill"></span>
+                    <button class="on" data-t="0">Application Support (2024–present)</button>
+                    <button data-t="1">Backend Engineer (2023–2024)</button>
+                </div>
+                <div class="role on">
+                    <h3>Application Support Engineer</h3>
+                    <p class="meta">ORDENT, for QLOLA Q-Cash Management &amp; QLOLA Ibbiz (Bank BRI). Jan 2024 –
+                        present, Jakarta</p>
+                    <div class="item">
+                        <h4>System reliability</h4>
+                        <p>Monitored production microservices processing corporate financial transactions daily and held
+                            the 99.9% SLA.<strong>0 critical SLA breaches</strong></p>
+                    </div>
+                    <div class="item">
+                        <h4>Incident handling and fast RCA</h4>
+                        <p>Resolved transaction anomalies, third-party gateway timeouts, and throughput
+                            bottlenecks.<strong>MTTR cut from 45 minutes to under 15</strong></p>
+                    </div>
+                    <div class="item">
+                        <h4>Log analysis and PostgreSQL tuning</h4>
+                        <p>Read query plans with EXPLAIN ANALYZE, eliminated deadlocks, and reconciled ledger data
+                            through ELK and PostgreSQL.<strong>Composite indexes and CTE queries</strong></p>
+                    </div>
+                    <div class="item">
+                        <h4>Zero-downtime deployments</h4>
+                        <p>Rolling deployments, staged database migrations, NGINX reconfiguration, and atomic Redis
+                            cache invalidation.<strong>Docker, NGINX, Redis</strong></p>
+                    </div>
+                    <div class="item">
+                        <h4>Automation with Python</h4>
+                        <p>Transaction reconciliation scripts (Pandas) and n8n webhook alerts that removed 70% of manual
+                            checking.<strong>Pandas, n8n, Makefile</strong></p>
+                    </div>
+                    <div class="item">
+                        <h4>Post-mortems and runbooks</h4>
+                        <p>Wrote blameless post-mortems and recovery runbooks for engineering and banking
+                            teams.<strong>Disaster recovery playbook</strong></p>
                     </div>
                 </div>
-
-                <div class="glass p-8 md:p-10 rounded-[2.5rem] hover:border-blue-500/50 transition-all duration-500 group" data-aos="fade-up" data-aos-delay="100">
-                    <div class="flex flex-col md:flex-row md:justify-between mb-8 border-b border-gray-800 pb-6">
-                        <div>
-                            <h3 class="text-2xl font-bold text-white group-hover:text-blue-400 transition mb-1">Backend Engineer</h3>
-                            <p class="text-blue-500 font-bold text-sm tracking-wide">ORDENT</p>
-                        </div>
-                        <div class="mt-4 md:mt-0 md:text-right">
-                            <span class="bg-gray-800 text-gray-400 px-4 py-1.5 rounded-full text-xs font-bold border border-gray-700">JUN 2023 — JAN 2024</span>
-                        </div>
+                <div class="role">
+                    <h3>Backend Engineer</h3>
+                    <p class="meta">ORDENT, API engineering and financial gateway integrations. Jun 2023 – Jan 2024,
+                        Jakarta</p>
+                    <div class="item">
+                        <h4>Golang microservices</h4>
+                        <p>Low-latency REST and gRPC services with Echo and Gin, plus worker pools for concurrent bulk
+                            transfers.<strong>Protobuf, Echo, Gin</strong></p>
                     </div>
-
-                    <div class="grid md:grid-cols-2 gap-x-12 gap-y-4">
-                        <div class="space-y-4">
-                            <div class="flex gap-4">
-                                <i data-lucide="code-2" class="text-blue-500 w-6 h-6 flex-shrink-0"></i>
-                                <p class="text-sm text-gray-400 leading-relaxed">
-                                    <strong class="text-gray-200">API Engineering:</strong> Developed and maintained scalable REST and gRPC APIs using <strong>Golang</strong> for corporate cash management systems.
-                                </p>
-                            </div>
-                            <div class="flex gap-4">
-                                <i data-lucide="database-zap" class="text-blue-500 w-6 h-6 flex-shrink-0"></i>
-                                <p class="text-sm text-gray-400 leading-relaxed">
-                                    <strong class="text-gray-200">Performance:</strong> Optimized complex PostgreSQL queries and indexing strategies, resulting in significantly faster response times for data-heavy requests.
-                                </p>
-                            </div>
-                        </div>
-                        <div class="space-y-4">
-                            <div class="flex gap-4">
-                                <i data-lucide="share-2" class="text-blue-500 w-6 h-6 flex-shrink-0"></i>
-                                <p class="text-sm text-gray-400 leading-relaxed">
-                                    <strong class="text-gray-200">Integration:</strong> Spearheaded third-party API integrations while adhering to strict financial security protocols and regulatory requirements.
-                                </p>
-                            </div>
-                            <div class="flex gap-4">
-                                <i data-lucide="git-branch" class="text-blue-500 w-6 h-6 flex-shrink-0"></i>
-                                <p class="text-sm text-gray-400 leading-relaxed">
-                                    <strong class="text-gray-200">Architecture:</strong> Designed and implemented clean, maintainable code within a <strong>Microservices architecture</strong> using Gin and Echo frameworks.
-                                </p>
-                            </div>
-                        </div>
+                    <div class="item">
+                        <h4>Schemas and database tuning</h4>
+                        <p>Refactored nested queries and built composite and partial indexes on PostgreSQL and MySQL,
+                            speeding up account reports by over 90%.<strong>PostgreSQL, MySQL, CTE</strong></p>
+                    </div>
+                    <div class="item">
+                        <h4>Security and compliance</h4>
+                        <p>HMAC SHA-256 payload signatures, end-to-end encryption, OAuth2 token rotation, and tiered
+                            rate limiting.<strong>HMAC, OAuth2, audit trail</strong></p>
+                    </div>
+                    <div class="item">
+                        <h4>Docker, Podman, Kubernetes</h4>
+                        <p>Multi-stage Dockerfiles, rootless Podman, and Kubernetes manifests with proactive pod
+                            diagnostics.<strong>Pod health checks</strong></p>
+                    </div>
+                    <div class="item">
+                        <h4>Redis distributed locks</h4>
+                        <p>Redlock to prevent duplicate payments, plus session cache strategies and eviction
+                            policies.<strong>Zero double-disbursements</strong></p>
+                    </div>
+                    <div class="item">
+                        <h4>RabbitMQ and documentation</h4>
+                        <p>Asynchronous messaging for financial notifications, OpenAPI/Swagger specs, and architecture
+                            diagrams.<strong>RabbitMQ, OpenAPI</strong></p>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <section id="skills" class="py-24 bg-[#050a18]">
-        <div class="max-w-7xl mx-auto px-6">
-            <h2 class="text-4xl font-bold text-white mb-16 text-center">Technical Arsenal</h2>
-            <div class="grid md:grid-cols-3 gap-8">
-                <div class="glass p-8 rounded-3xl" data-aos="zoom-in">
-                    <i data-lucide="terminal" class="w-10 h-10 text-blue-500 mb-6"></i>
-                    <h3 class="text-xl font-bold text-white mb-4">Languages</h3>
-                    <div class="flex flex-wrap gap-2 text-sm">
-                        <span class="bg-blue-600/10 text-blue-400 px-3 py-1 rounded-full border border-blue-500/20">Golang</span>
-                        <span class="bg-blue-600/10 text-blue-400 px-3 py-1 rounded-full border border-blue-500/20">TypeScript</span>
-                        <span class="bg-blue-600/10 text-blue-400 px-3 py-1 rounded-full border border-blue-500/20">PHP</span>
-                        <span class="bg-blue-600/10 text-blue-400 px-3 py-1 rounded-full border border-blue-500/20">SQL</span>
+        <section id="rca">
+            <div class="wrap">
+                <h2 class="rv">Case study: the month-end payroll incident</h2>
+                <p class="lead rv">A corporate payroll surge made the Q-Cash gateway time out. These four steps restored
+                    it in under 15 minutes and protected the 99.9% SLA.</p>
+                <ol class="tl rv">
+                    <li><time>T+00:30</time>
+                        <h4>Detection via Prometheus alert</h4>
+                        <p>A Slack notification flagged the HTTP 504 rate on <code>qlola-qcash-gw</code> crossing the
+                            1.8% threshold during concurrent payroll runs.</p>
+                    </li>
+                    <li><time>T+03:15</time>
+                        <h4>Isolation via ELK traces and pg_stat_activity</h4>
+                        <p>An unindexed transaction status history query ran full sequential scans and exhausted the
+                            connection pool.</p>
+                    </li>
+                    <li><time>T+09:40</time>
+                        <h4>Fast remediation</h4>
+                        <p>Non-critical reporting queries were rerouted to a read replica, pool limits adjusted
+                            temporarily, and statement timeouts applied so the clearing queue could drain.</p>
+                    </li>
+                    <li><time>T+14:20</time>
+                        <h4>Permanent hardening</h4>
+                        <p>Query refactored with a CTE and a partial index created on
+                            <code>(corp_id, status) WHERE status = 'PENDING'</code>. No regressions since.</p>
+                    </li>
+                </ol>
+                <div class="cmp rv">
+                    <div class="pane b">
+                        <h5>Before: 2,420 ms (Seq Scan)</h5>
+                        <pre>SELECT t.*, a.corp_name
+FROM transactions t
+LEFT JOIN corporate_accounts a
+  ON t.corp_id = a.id
+WHERE t.corp_id = $1
+  AND t.status IN ('PENDING','PROCESSING')
+  AND t.created_at &gt;= NOW() - INTERVAL '30 days'
+ORDER BY t.created_at DESC;
+
+-- Seq Scan, rows removed: 1,842,910
+-- Execution Time: 2420.14 ms</pre>
+                    </div>
+                    <div class="pane a">
+                        <h5>After: 42 ms (Index Scan)</h5>
+                        <pre>WITH active_tx AS MATERIALIZED (
+  SELECT id, corp_id, status,
+         created_at, amount
+  FROM transactions
+  WHERE corp_id = $1
+    AND status IN ('PENDING','PROCESSING')
+  ORDER BY created_at DESC
+  LIMIT 50
+)
+SELECT atx.*, a.corp_name
+FROM active_tx atx
+JOIN corporate_accounts a ON atx.corp_id = a.id;
+
+-- idx_tx_active_corp, Execution: 41.82 ms</pre>
                     </div>
                 </div>
-                <div class="glass p-8 rounded-3xl" data-aos="zoom-in" data-aos-delay="100">
-                    <i data-lucide="layers" class="w-10 h-10 text-blue-500 mb-6"></i>
-                    <h3 class="text-xl font-bold text-white mb-4">Infrastructure</h3>
-                    <div class="flex flex-wrap gap-2 text-sm">
-                        <span class="bg-blue-600/10 text-blue-400 px-3 py-1 rounded-full border border-blue-500/20">Docker</span>
-                        <span class="bg-blue-600/10 text-blue-400 px-3 py-1 rounded-full border border-blue-500/20">RabbitMQ</span>
-                        <span class="bg-blue-600/10 text-blue-400 px-3 py-1 rounded-full border border-blue-500/20">Elasticsearch</span>
-                        <span class="bg-blue-600/10 text-blue-400 px-3 py-1 rounded-full border border-blue-500/20">gRPC</span>
-                    </div>
+                <div class="bars rv">
+                    <div class="bar"><span>Before</span><i><u style="--w:100%"></u></i><b>2,420 ms</b></div>
+                    <div class="bar"><span>After</span><i><u style="--w:1.8%"></u></i><b>42 ms</b></div>
                 </div>
-                <div class="glass p-8 rounded-3xl" data-aos="zoom-in" data-aos-delay="200">
-                    <i data-lucide="database" class="w-10 h-10 text-blue-500 mb-6"></i>
-                    <h3 class="text-xl font-bold text-white mb-4">Databases</h3>
-                    <div class="flex flex-wrap gap-2 text-sm">
-                        <span class="bg-blue-600/10 text-blue-400 px-3 py-1 rounded-full border border-blue-500/20">PostgreSQL</span>
-                        <span class="bg-blue-600/10 text-blue-400 px-3 py-1 rounded-full border border-blue-500/20">MySQL</span>
-                        <span class="bg-blue-600/10 text-blue-400 px-3 py-1 rounded-full border border-blue-500/20">Redis</span>
-                        <span class="bg-blue-600/10 text-blue-400 px-3 py-1 rounded-full border border-blue-500/20">MongoDB</span>
+                <p class="lead rv" style="margin-top:16px">Latency dropped 98.2%, with no disk reads, and concurrency
+                    capacity rose 5.5x without adding servers.</p>
+            </div>
+        </section>
+
+        <section id="skills" class="alt">
+            <div class="wrap">
+                <h2 class="rv">Tech stack</h2>
+                <p class="lead rv">The technologies I use hands-on to design, secure, and operate enterprise-scale
+                    backends.</p>
+                <div class="chips rv" id="chips">
+                    <button class="on" data-c="all">All</button><button data-c="lang">Languages</button><button
+                        data-c="db">Databases and caching</button><button data-c="fw">Frameworks and
+                        APIs</button><button data-c="ops">DevOps</button>
+                </div>
+                <div class="sk" id="sk">
+                    <div data-c="lang">
+                        <h4>Golang <small>Core specialty</small></h4>
+                        <p>Goroutines and channels, low-latency REST APIs with Echo and Gin, custom worker pools.</p>
+                    </div>
+                    <div data-c="lang">
+                        <h4>Python <small>Telemetry</small></h4>
+                        <p>Monitoring scripts for sales volume, transaction TPS, and operational metric rollups.</p>
+                    </div>
+                    <div data-c="lang">
+                        <h4>PHP <small>Web backend</small></h4>
+                        <p>Server-side web development in PHP with MVC structure, CRUD applications, and REST APIs.</p>
+                    </div>
+                    <div data-c="lang">
+                        <h4>SQL and query tuning <small>Performance</small></h4>
+                        <p>Execution plan profiling, composite and partial indexes, materialized CTEs, deadlock
+                            resolution.</p>
+                    </div>
+                    <div data-c="db">
+                        <h4>PostgreSQL <small>Banking production</small></h4>
+                        <p>Connection pool governance, table partitioning, streaming replication, pg_stat_activity
+                            analysis.</p>
+                    </div>
+                    <div data-c="db">
+                        <h4>Redis <small>Distributed cache</small></h4>
+                        <p>Redlock to prevent double disbursements, session storage, atomic TTL invalidation.</p>
+                    </div>
+                    <div data-c="db">
+                        <h4>MySQL and MongoDB</h4>
+                        <p>InnoDB schema modeling, B-Tree index optimization, and document storage for audit logs.</p>
+                    </div>
+                    <div data-c="fw">
+                        <h4>Echo, Gin, gRPC</h4>
+                        <p>Service-to-service communication with Protobuf, strict contracts, and custom auth middleware.
+                        </p>
+                    </div>
+                    <div data-c="fw">
+                        <h4>JavaScript, TypeScript, NestJS</h4>
+                        <p>Modular services with NestJS and Express, typed end to end with TypeScript.</p>
+                    </div>
+                    <div data-c="fw">
+                        <h4>Laravel and CodeIgniter <small>PHP frameworks</small></h4>
+                        <p>MVC web applications and REST APIs built with Laravel and CodeIgniter.</p>
+                    </div>
+                    <div data-c="fw">
+                        <h4>Vue.js and Next.js <small>Frontend</small></h4>
+                        <p>Component-based interfaces with Vue.js and server-rendered React applications with Next.js.
+                        </p>
+                    </div>
+                    <div data-c="ops">
+                        <h4>Docker, Podman, Kubernetes</h4>
+                        <p>Multi-stage builds, rootless Podman, Kubernetes manifests and probes.</p>
+                    </div>
+                    <div data-c="ops">
+                        <h4>Kong Gateway and Konga</h4>
+                        <p>Upstream configuration, route and service mapping, consumer key authentication, and rate
+                            limiting through the Konga GUI.</p>
+                    </div>
+                    <div data-c="ops">
+                        <h4>RabbitMQ, n8n, Makefile</h4>
+                        <p>Asynchronous financial messaging, automated webhook workflows, and developer tooling.</p>
+                    </div>
+                    <div data-c="ops">
+                        <h4>ELK Stack and Prometheus</h4>
+                        <p>Centralized log aggregation with Elasticsearch, Logstash, Kibana, plus Prometheus and Grafana
+                            alerts.</p>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <footer id="contact" class="py-24">
-        <div class="max-w-7xl mx-auto px-6 text-center">
-            <h2 class="text-5xl font-extrabold text-white mb-8">Ready to Collaborate?</h2>
-            <p class="text-gray-400 mb-12">I'm currently available for new opportunities and collaborations.</p>
-            <div class="flex justify-center space-x-6">
-                <a href="https://linkedin.com/in/isman-vauzi" target="_blank" class="w-12 h-12 glass rounded-full flex items-center justify-center hover:bg-blue-600 transition">
-                    <i data-lucide="linkedin" class="w-5 h-5 text-white"></i>
-                </a>
-                <a href="mailto:ismanvauzi1998@gmail.com?subject=Tanya%20Project%20Backend&body=Halo%20Isman,%20saya%20tertarik%20bekerja%20sama%20dengan%20Anda." 
-                class="w-12 h-12 glass rounded-full flex items-center justify-center hover:bg-blue-600 transition group"
-                title="Kirim Email">
-                    <i data-lucide="mail" class="w-5 h-5 text-white group-hover:scale-110 transition-transform"></i>
-                </a>
-                <a href="https://wa.me/6285158007836?text=Halo%20Isman,%20saya%20tertarik%20dengan%20portfolio%20Anda." 
-                target="_blank" 
-                class="w-12 h-12 glass rounded-full flex items-center justify-center hover:bg-[#25D366] transition-all duration-300 group shadow-lg"
-                title="Chat via WhatsApp">
-                    <svg 
-                        class="w-6 h-6 fill-white transition-transform duration-300 group-hover:scale-110" 
-                        viewBox="0 0 24 24" 
-                        xmlns="http://www.w3.org/2000/svg">
-                        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-4.821 7.603c-1.907 0-3.776-.511-5.41-1.478l-.39-.232-4.018 1.053 1.073-3.912-.254-.405A9.957 9.957 0 012.1 12.004c0-5.513 4.487-10 10-10 2.67 0 5.18 1.04 7.07 2.93a9.93 9.93 0 012.93 7.07c0 5.513-4.48 10-10 10"/>
-                    </svg>
-                </a>
+        <section id="architecture">
+            <div class="wrap">
+                <h2 class="rv">Transaction flow architecture</h2>
+                <p class="lead rv">How a single corporate payment request travels through the QLOLA platform, with high
+                    availability and no data loss.</p>
+                <div class="flow rv">
+                    <div>
+                        <h4>Corporate client</h4>
+                        <p>Single or batch payments from the Q-Cash or Ibbiz portals, or Host-to-Host.</p><small>HTTPS /
+                            TLS 1.3</small>
+                    </div>
+                    <div>
+                        <h4>Kong Gateway</h4>
+                        <p>Routing, consumer access control, rate limiting, and health monitoring via Konga.</p>
+                        <small>Konga admin</small>
+                    </div>
+                    <div>
+                        <h4>Golang microservices</h4>
+                        <p>Business validation, authorization, clearing flows, and internal gRPC calls.</p>
+                        <small>Autoscaled pods</small>
+                    </div>
+                    <div>
+                        <h4>Redis and PostgreSQL</h4>
+                        <p>Redis locks prevent double payments, then commit to the primary with replica sync.</p>
+                        <small>RPO 0, strict ACID</small>
+                    </div>
+                    <div>
+                        <h4>Audit and ELK</h4>
+                        <p>RabbitMQ streams async notifications while transaction lifecycle logs are indexed in
+                            Elasticsearch.</p><small>Audit compliance</small>
+                    </div>
+                </div>
+                <div class="quote rv"><b>Graceful degradation beats hard failure.</b>
+                    <p>If a downstream clearing vendor slows down, circuit breakers isolate requests so the core ledger
+                        queues stay unaffected.</p>
+                </div>
             </div>
-            <p class="mt-20 text-sm text-gray-600 uppercase tracking-widest font-bold">© 2026 Isman Vauzi. Built with passion.</p>
-        </div>
+        </section>
+
+        <section id="contact" class="alt">
+            <div class="wrap">
+                <h2 class="rv">Let's talk</h2>
+                <p class="lead rv">About high-volume banking architecture, query tuning, or a career opportunity. I
+                    usually reply within 24 hours.</p>
+                <a class="big rv"
+                    href="mailto:ismanvauzi1998@gmail.com?subject=Inquiry%20for%20Isman%20Vauzi%20-%20Engineering%20Opportunity">ismanvauzi1998@gmail.com</a>
+                <div class="acts rv">
+                    <a class="btn pri"
+                        href="mailto:ismanvauzi1998@gmail.com?subject=Inquiry%20for%20Isman%20Vauzi%20-%20Engineering%20Opportunity">Send
+                        email</a>
+                    <a class="btn" target="_blank" rel="noopener"
+                        href="https://wa.me/6285158007836?text=Hi%20Isman,%20I%20came%20across%20your%20portfolio%20and%20would%20like%20to%20discuss%20an%20opportunity.">WhatsApp</a>
+                    <a class="btn" target="_blank" rel="noopener"
+                        href="https://www.linkedin.com/in/isman-vauzi/">LinkedIn</a>
+                    <button class="btn" onclick="copyEmail()">Copy email</button>
+                </div>
+                <div class="facts rv"><span>+62 851-5800-7836</span><span>Jakarta, Indonesia (WIB,
+                        UTC+7)</span><span>On-site or remote</span></div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="wrap"><span>Isman Vauzi, Software Engineer & Application Support Specialist</span><span>© 2026 Isman
+                Vauzi</span></div>
     </footer>
 
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <nav class="bnav" id="bnav" aria-label="Main navigation">
+        <a href="#home" class="on"><svg viewBox="0 0 24 24">
+                <path d="M3 11l9-8 9 8" />
+                <path d="M5 10v10h5v-6h4v6h5V10" />
+            </svg>Home</a>
+        <a href="#experience"><svg viewBox="0 0 24 24">
+                <rect x="3" y="7" width="18" height="13" rx="2" />
+                <path d="M9 7V5a2 2 0 012-2h2a2 2 0 012 2v2" />
+            </svg>Work</a>
+        <a href="#rca"><svg viewBox="0 0 24 24">
+                <path d="M3 12h4l3-8 4 16 3-8h4" />
+            </svg>Case</a>
+        <a href="#skills"><svg viewBox="0 0 24 24">
+                <path d="M8 7l-5 5 5 5" />
+                <path d="M16 7l5 5-5 5" />
+                <path d="M14 4l-4 16" />
+            </svg>Skills</a>
+        <a href="#contact"><svg viewBox="0 0 24 24">
+                <rect x="3" y="5" width="18" height="14" rx="2" />
+                <path d="M3 7l9 6 9-6" />
+            </svg>Contact</a>
+    </nav>
+    <div id="toast" role="status">Email copied to clipboard</div>
 
-    <script src="index.js"></script>
-    <script type="application/ld+json">
-        {
-        "@context": "https://schema.org",
-        "@type": "Pergit son",
-        "name": "Isman Vauzi",
-        "alternateName": ["Isman Fauzi", "Isma", "Vauzi"],
-        "url": "https://username.github.io",
-        "sameAs": [
-            "https://linkedin.com/in/ismanvauzi",
-            "https://github.com/ismanvauzi"
-        ]
+    <script>
+        const $ = s => document.querySelector(s), $$ = s => [...document.querySelectorAll(s)];
+        const reduce = matchMedia('(prefers-reduced-motion:reduce)').matches;
+
+        /* hero console: the one orchestrated moment */
+        const lines = [
+            ['err', 'T+00:30', 'ALERT 504 qlola-qcash-gw 1.8% -> 2.6%'],
+            ['warn', 'T+03:15', 'pg_stat_activity: seq scan on transactions'],
+            ['warn', 'T+03:40', 'connection pool 98% used'],
+            ['ok', 'T+09:40', 'reporting queries -> read replica'],
+            ['ok', 'T+09:55', 'statement_timeout applied, queue draining'],
+            ['ok', 'T+14:20', 'idx_tx_active_corp created, 2420ms -> 42ms'],
+            ['ok', '', 'status: RESOLVED, post-mortem filed']
+        ];
+        const log = $('#log');
+        lines.forEach(([c, t, m]) => { const d = document.createElement('div'); d.innerHTML = `<em>${t || '      '}</em><span class="${c}">${m}</span>`; log.appendChild(d) });
+        const cur = document.createElement('span'); cur.className = 'cursor';
+        [...log.children].forEach((d, i) => setTimeout(() => { d.classList.add('show'); if (i === lines.length - 1) d.appendChild(cur) }, reduce ? 0 : 900 + i * 650));
+
+        /* clock */
+        function tick() { try { $('#clock').textContent = 'Jakarta, ' + new Intl.DateTimeFormat('en-GB', { timeZone: 'Asia/Jakarta', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false }).format(new Date()).replace(/\./g, ':') + ' WIB' } catch (e) { } }
+        tick(); setInterval(tick, 1000);
+
+        /* reveal + bars */
+        const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('vis'); io.unobserve(e.target) } }), { threshold: .15 });
+        $$('.rv').forEach(el => io.observe(el));
+
+        /* tabs with sliding pill */
+        const tabs = $('#tabs'), pill = tabs.querySelector('.pill'), tb = $$('#tabs button');
+        function pos(b) { pill.style.left = b.offsetLeft + 'px'; pill.style.width = b.offsetWidth + 'px' }
+        tb.forEach((b, i) => b.onclick = () => { tb.forEach(x => x.classList.toggle('on', x === b)); $$('.role').forEach((r, j) => r.classList.toggle('on', i === j)); pos(b) });
+        addEventListener('load', () => pos($('#tabs .on'))); addEventListener('resize', () => pos($('#tabs .on')));
+        document.fonts && document.fonts.ready.then(() => pos($('#tabs .on')));
+
+        /* skill filter */
+        $$('#chips button').forEach(b => b.onclick = () => { $$('#chips button').forEach(x => x.classList.toggle('on', x === b)); $$('#sk div').forEach(d => { d.hidden = !(b.dataset.c === 'all' || d.dataset.c === b.dataset.c); d.style.animation = 'none'; d.offsetWidth; d.style.animation = '' }) });
+
+        /* active nav (desktop + bottom) and progress bar */
+        const secs = ['home', 'experience', 'rca', 'skills', 'architecture', 'contact'].map(id => document.getElementById(id));
+        function spy() {
+            const h = document.documentElement, y = scrollY;
+            $('#bar').style.width = (y / (h.scrollHeight - innerHeight) * 100) + '%';
+            let cur = 'home'; secs.forEach(s => { if (s.getBoundingClientRect().top < innerHeight * .4) cur = s.id });
+            $$('#dnav a,#bnav a').forEach(a => a.classList.toggle('on', a.getAttribute('href') === '#' + cur || (cur === 'architecture' && a.getAttribute('href') === '#skills' && a.parentElement.id === 'bnav')));
         }
+        addEventListener('scroll', spy, { passive: true }); spy();
     </script>
 </body>
+
 </html>

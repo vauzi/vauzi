@@ -1,140 +1,342 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/png" href="public/myLogo.png">
   <link rel="apple-touch-icon" href="public/myLogo.png">
-
   <title>Isman Vauzi | Software Engineer CV</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-  tailwind.config = {
-    darkMode: 'class',
-    theme: { extend: { colors: { primary: "#1e3a8a" } } }
-  }
-  </script>
+  <meta name="author" content="Isman Vauzi">
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
-    body { font-family: 'Inter', sans-serif; }
-    .fade-in { opacity: 0; transform: translateY(10px); transition: all 0.5s ease; }
-    .fade-in.visible { opacity: 1; transform: translateY(0); }
-    @media print { .no-print { display: none; } }
+    @page {
+      size: A4;
+      margin: 14mm 15mm
+    }
+
+    * {
+      box-sizing: border-box
+    }
+
+    html {
+      background: #e9ecf1
+    }
+
+    body {
+      margin: 0;
+      font: 10.5pt/1.45 Arial, Helvetica, sans-serif;
+      color: #111
+    }
+
+    #cv {
+      margin: 20px auto 30px;
+      max-width: 794px;
+      background: #fff;
+      color: #111;
+      padding: 15mm;
+      box-shadow: 0 0 0 1px #d5d9e0
+    }
+
+    header {
+      border-bottom: 2px solid #1e3a8a;
+      padding-bottom: 8px;
+      margin-bottom: 4px
+    }
+
+    h1 {
+      font-size: 21pt;
+      margin: 0;
+      color: #1e3a8a;
+      letter-spacing: .2px
+    }
+
+    .title {
+      font-size: 11.5pt;
+      font-weight: bold;
+      margin: 2px 0 6px
+    }
+
+    .contact {
+      margin: 0;
+      font-size: 10pt
+    }
+
+    h2 {
+      font-size: 11pt;
+      text-transform: uppercase;
+      color: #1e3a8a;
+      border-bottom: 1px solid #999;
+      padding-bottom: 2px;
+      margin: 16px 0 8px
+    }
+
+    p {
+      margin: 0 0 6px
+    }
+
+    .job {
+      margin-bottom: 10px
+    }
+
+    .row {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      break-inside: avoid
+    }
+
+    .row b {
+      font-size: 10.5pt
+    }
+
+    .org {
+      margin: 0 0 3px;
+      font-style: italic
+    }
+
+    ul {
+      margin: 0;
+      padding-left: 18px
+    }
+
+    li {
+      margin-bottom: 3px
+    }
+
+    .skills p {
+      margin-bottom: 3px
+    }
+
+    .bar {
+      max-width: 794px;
+      margin: 16px auto 0;
+      display: flex;
+      gap: 10px;
+      justify-content: space-between;
+      padding: 0 4px;
+      flex-wrap: wrap
+    }
+
+    .bar .r {
+      display: flex;
+      gap: 10px
+    }
+
+    .bar button:disabled {
+      opacity: .6;
+      cursor: wait
+    }
+
+    .bar button,
+    .bar a {
+      font: 600 13px Arial, sans-serif;
+      padding: 9px 16px;
+      border: 1px solid #1e3a8a;
+      background: #1e3a8a;
+      color: #fff;
+      border-radius: 4px;
+      cursor: pointer;
+      text-decoration: none
+    }
+
+    .bar a.alt {
+      background: #fff;
+      color: #1e3a8a
+    }
+
+    @media print {
+      html {
+        background: #fff
+      }
+
+      #cv {
+        margin: 0;
+        padding: 0;
+        max-width: none;
+        box-shadow: none
+      }
+
+      .bar {
+        display: none
+      }
+
+      a {
+        color: #111;
+        text-decoration: none
+      }
+    }
+
+    @media (max-width:600px) {
+      #cv {
+        padding: 18px
+      }
+
+      .row {
+        flex-direction: column;
+        gap: 0
+      }
+    }
   </style>
 </head>
-<body class="bg-gray-100 text-gray-800 dark:bg-gray-900 dark:text-gray-200 transition-colors duration-300">
 
-<div class="fixed top-12 left-8 z-50">
-    <a href="index.html" class="flex items-center gap-2 px-4 py-2 glass rounded-xl text-gray-500 hover:text-white hover:bg-blue-600 transition-all duration-300 group shadow-lg shadow-blue-900/20">
-        <i data-lucide="arrow-left" class="w-5 h-5 group-hover:-translate-x-1 transition-transform"></i>
-        <span class="text-sm font-bold uppercase tracking-wider">Back to Portfolio</span>
-    </a>
-</div>
-
-<div id="cv-wrapper" class="py-10">
-  <div id="cv-content" class="max-w-[210mm] mx-auto bg-white dark:bg-gray-800 shadow-2xl px-[15mm] py-[15mm] transition-all duration-300">
-    
-    <div class="flex justify-between items-start border-b-4 border-primary pb-6 mb-8">
-      <div>
-        <h1 class="text-4xl font-extrabold text-primary dark:text-blue-400 tracking-tight uppercase">ISMAN VAUZI</h1>
-        <p class="text-xl font-semibold text-gray-600 dark:text-gray-300 mt-1 uppercase tracking-widest">Software Engineer</p>
-      </div>
-      <div class="text-right text-[13px] leading-relaxed font-medium">
-        <p>ismanvauzi1998@gmail.com 📧</p>
-        <p>+62 851-5800-7835 📱</p>
-        <p>Jakarta, Indonesia 📍</p>
-        <p>linkedin.com/in/isman-vauzi 🔗</p>
-      </div>
-    </div>
-
-    <div id="action-buttons" class="flex gap-3 mb-6 justify-end no-print">
-      <button onclick="toggleDarkMode()" class="px-4 py-2 text-xs font-bold rounded-lg border dark:border-gray-600 hover:bg-gray-200 dark:hover:bg-gray-700 transition">🌙 MODE</button>
-      <button onclick="downloadPDF()" class="px-4 py-2 text-xs font-bold bg-primary text-white rounded-lg hover:opacity-90 shadow-md transition">⬇ DOWNLOAD PDF</button>
-    </div>
-
-    <section class="mb-8 fade-in">
-      <h2 class="text-md font-bold text-primary dark:text-blue-400 mb-2 uppercase border-b border-gray-200 pb-1">Professional Summary</h2>
-      <p class="text-[13px] leading-relaxed text-justify">
-        Highly analytical Software Engineer with strong experience in high-volume banking transaction systems. Specialized in <strong>Golang</strong>, <strong>Microservices architecture</strong>, and production system monitoring. Proven track record in maintaining 99.9% system uptime for mission-critical financial environments (QLOLA Bank BRI), troubleshooting complex transaction flows, and optimizing backend performance.
-      </p>
-    </section>
-
-    <section class="mb-8 fade-in">
-      <h2 class="text-md font-bold text-primary dark:text-blue-400 mb-4 uppercase border-b border-gray-200 pb-1">Work Experience</h2>
-      
-      <div class="mb-6">
-        <div class="flex justify-between font-bold text-[14px]">
-          <span>ORDENT — Application Support Engineer</span>
-          <span class="text-gray-500 text-[12px]">Jan 2024 – Present</span>
-        </div>
-        <p class="text-[12px] italic text-primary mb-2 uppercase font-semibold">Project: QLOLA Q-Cash Management & QLOLA Ibbiz (BANK BRI)</p>
-        <ul class="list-disc list-outside text-[12px] space-y-1.5 ml-5 text-justify">
-          <li><strong>System Reliability:</strong> Monitored and supported high-volume production applications to ensure maximum availability, stability, and quick responsiveness.</li>
-          <li><strong>Incident Management:</strong> Conducted deep-dive troubleshooting and <strong>Root Cause Analysis (RCA)</strong> to efficiently identify and resolve production bugs.</li>
-          <li><strong>Operations:</strong> Executed application deployments and system patching in production environments, ensuring smooth updates with minimal disruption.</li>
-          <li><strong>Data Monitoring:</strong> Analyzed system logs and financial transactions to maintain accuracy, consistency, and reliability in transaction processing.</li>
-          <li><strong>Technical Collaboration:</strong> Provided technical support to cross-functional teams and documented issues/solutions to build a sustainable knowledge base.</li>
-        </ul>
-      </div>
-
-      <div>
-        <div class="flex justify-between font-bold text-[14px]">
-          <span>ORDENT — Backend Engineer</span>
-          <span class="text-gray-500 text-[12px]">Jun 2023 – Jan 2024</span>
-        </div>
-        <ul class="list-disc list-outside text-[12px] space-y-1.5 ml-5 mt-2 text-justify">
-          <li><strong>API Development:</strong> Engineered robust APIs using <strong>Golang</strong> to support high-volume financial transactions with secure and efficient data exchange.</li>
-          <li><strong>Performance Tuning:</strong> Optimized database queries and improved data retrieval performance to enable real-time processing of sensitive financial data.</li>
-          <li><strong>Integration:</strong> Integrated third-party APIs and services under strict banking compliance standards and regulatory requirements.</li>
-          <li><strong>Maintenance:</strong> Performed proactive troubleshooting and maintained comprehensive documentation (API references, data flows) to support team collaboration.</li>
-        </ul>
-      </div>
-    </section>
-
-    <section class="mb-8 fade-in">
-      <h2 class="text-md font-bold text-primary dark:text-blue-400 mb-3 uppercase border-b border-gray-200 pb-1">Technical Skills</h2>
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-2 text-[12px] leading-relaxed">
-        <p><strong>Programming Languages:</strong> Golang, JavaScript, TypeScript, PHP, SQL</p>
-        <p><strong>Databases:</strong> PostgreSQL, MySQL, MongoDB, Redis</p>
-        <p><strong>Framework & Library:</strong> Laravel, CodeIgniter, ExpressJS, NestJS, Gin, Echo, gRPC, Protobuf, Vue.js, Tailwind CSS, Bootstrap</p>
-        <p><strong>Tools:</strong> Docker, RabbitMQ, Rundeck, Minio, Elasticsearch, Konga, Git, GitHub/Bitbucket, protoc</p>
-        <p><strong>Practices:</strong> Microservices Architecture, SOA, API Development, Unit Testing, System Monitoring</p>
-        <p><strong>Soft Skills:</strong> Problem Solving, Analytical Thinking, Team Collaboration, Time Management, Adaptive Learning</p>
-      </div>
-    </section>
-
-    <div class="grid grid-cols-2 gap-8 fade-in">
-      <section>
-        <h2 class="text-md font-bold text-primary dark:text-blue-400 mb-2 uppercase border-b border-gray-200 pb-1">Education</h2>
-        <div class="text-[12px]">
-          <p class="font-bold text-gray-900 dark:text-white">Lamongan Islamic University</p>
-          <p>B.S. Informatics Engineering (2017–2022) | GPA: 3.27</p>
-          <p class="italic text-gray-500">Thesis: Milkfish Harvest Prediction System using Naive Bayes</p>
-        </div>
-      </section>
-      <section>
-        <h2 class="text-md font-bold text-primary dark:text-blue-400 mb-2 uppercase border-b border-gray-200 pb-1">Learning & Certification</h2>
-        <ul class="text-[12px] space-y-0.5">
-          <li>• Fullstack Developer Bootcamp — Alkademi</li>
-          <li>• Backend Web Developer — Dicoding</li>
-          <li>• Continuous Learning: Distributed Systems</li>
-        </ul>
-      </section>
-    </div>
-
+<body>
+  <div class="bar">
+    <a class="alt" href="index.html">Back to Portfolio</a>
+    <div class="r"><button type="button" id="pdfBtn" onclick="downloadPDF(this)">Download PDF</button></div>
   </div>
-</div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <div id="cv">
 
-<script src="./cv.js"></script>
+    <main>
+      <header>
+        <h1>Isman Vauzi</h1>
+        <p class="title">Software Engineer</p>
+        <p class="contact">Jakarta, Indonesia | ismanvauzi1998@gmail.com | +62 851-5800-7835 |
+          linkedin.com/in/isman-vauzi</p>
+      </header>
 
+      <section>
+        <h2>Professional Summary</h2>
+        <p>Analytical Software Engineer with strong experience in high-volume banking transaction systems. Specialized
+          in Golang, microservices architecture, and production system monitoring. Maintained 99.9% system uptime for
+          mission-critical financial environments (QLOLA Bank BRI), troubleshot complex transaction flows, and optimized
+          backend performance, including cutting a critical query from 2,420 ms to 42 ms.</p>
+      </section>
 
-<script src="https://unpkg.com/lucide@latest"></script>
-<script>
-    lucide.createIcons();
-</script>
+      <section>
+        <h2>Work Experience</h2>
+
+        <div class="job">
+          <div class="row"><b>ORDENT - Application Support Engineer</b><span>Jan 2024 - Present</span></div>
+          <p class="org">Project: QLOLA Q-Cash Management and QLOLA Ibbiz (Bank BRI), Jakarta</p>
+          <ul>
+            <li><b>System Reliability:</b> Monitored and supported high-volume production applications to ensure
+              availability, stability, and quick responsiveness, with no critical SLA breaches against a 99.9% uptime
+              target.</li>
+            <li><b>Incident Management:</b> Conducted deep-dive troubleshooting and Root Cause Analysis (RCA) to
+              identify and resolve production bugs, reducing mean time to resolution from 45 minutes to under 15
+              minutes.</li>
+            <li><b>Performance and Data:</b> Analyzed system logs (ELK) and financial transactions to keep processing
+              accurate and consistent. Resolved a month-end payroll incident with a partial index and CTE refactor on
+              PostgreSQL (98.2% faster).</li>
+            <li><b>Operations:</b> Executed application deployments and system patching in production with minimal
+              disruption, including rolling deployments, database migrations, and NGINX and Redis changes.</li>
+            <li><b>Automation:</b> Built Python reconciliation scripts and n8n webhook alerts that removed about 70% of
+              manual inspection work.</li>
+            <li><b>Technical Collaboration:</b> Supported cross-functional teams and documented issues, post-mortems,
+              and runbooks to build a sustainable knowledge base.</li>
+          </ul>
+        </div>
+
+        <div class="job">
+          <div class="row"><b>ORDENT - Backend Engineer</b><span>Jun 2023 - Jan 2024</span></div>
+          <p class="org">Jakarta</p>
+          <ul>
+            <li><b>API Development:</b> Engineered robust REST and gRPC APIs using Golang (Echo, Gin) to support
+              high-volume financial transactions with secure and efficient data exchange.</li>
+            <li><b>Performance Tuning:</b> Optimized database queries and indexes on PostgreSQL and MySQL, speeding up
+              account report generation by over 90% for real-time processing of sensitive financial data.</li>
+            <li><b>Integration:</b> Integrated third-party APIs and services under strict banking compliance standards,
+              using HMAC SHA-256 signatures, OAuth2, and rate limiting. Used Redis distributed locks to prevent
+              duplicate payments.</li>
+            <li><b>Maintenance:</b> Performed proactive troubleshooting and maintained documentation (API references,
+              data flows) to support team collaboration.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="skills">
+        <h2>Technical Skills</h2>
+        <p><b>Programming Languages:</b> Golang, JavaScript, TypeScript, PHP, SQL, Python</p>
+        <p><b>Databases:</b> PostgreSQL, MySQL, MongoDB, Redis</p>
+        <p><b>Frameworks and Libraries:</b> Laravel, CodeIgniter, ExpressJS, NestJS, Gin, Echo, gRPC, Protobuf, Vue.js,
+          Tailwind CSS, Bootstrap</p>
+        <p><b>Tools:</b> Docker, Podman, Kubernetes, RabbitMQ, Rundeck, Minio, Elasticsearch (ELK), Prometheus, Grafana,
+          Konga (Kong Gateway), NGINX, n8n, Git, GitHub, Bitbucket, protoc</p>
+        <p><b>Practices:</b> Microservices Architecture, SOA, API Development, Unit Testing, System Monitoring, Root
+          Cause Analysis</p>
+        <p><b>Soft Skills:</b> Problem Solving, Analytical Thinking, Team Collaboration, Time Management, Adaptive
+          Learning</p>
+      </section>
+
+      <section>
+        <h2>Education</h2>
+        <div class="row"><b>Lamongan Islamic University</b><span>2017 - 2022</span></div>
+        <p>B.S. Informatics Engineering | GPA: 3.27</p>
+        <p>Thesis: Milkfish Harvest Prediction System using Naive Bayes</p>
+      </section>
+
+      <section>
+        <h2>Learning and Certification</h2>
+        <ul>
+          <li>Fullstack Developer Bootcamp, Alkademi</li>
+          <li>Backend Web Developer, Dicoding</li>
+          <li>Continuous learning: Distributed Systems</li>
+        </ul>
+      </section>
+    </main>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script>
+    /* Generates the PDF from the exact on-screen CV: a pixel-identical image of the page,
+       plus an invisible text layer so the PDF stays selectable and readable by ATS parsers. */
+    async function downloadPDF(btn) {
+      const el = document.getElementById('cv'), label = btn.textContent;
+      btn.disabled = true; btn.textContent = 'Generating PDF...';
+      const PW = 794, PH = 1123, M = 50, U = PH - 2 * M, S = 2;   // A4 at 96dpi, vertical page margin, usable height, render scale
+      const words = [], cands = []; let total = 0;
+      try {
+        const canvas = await html2canvas(el, {
+          scale: S, backgroundColor: '#ffffff', useCORS: true, windowWidth: PW,
+          onclone: (doc, clone) => {
+            clone.style.cssText += ';width:' + PW + 'px;max-width:' + PW + 'px;margin:0;box-shadow:none;padding:0 15mm';
+            const base = clone.getBoundingClientRect(); total = base.height;
+            clone.querySelectorAll('li,section,.job').forEach(e => cands.push(e.getBoundingClientRect().top - base.top));
+            cands.sort((a, b) => a - b);
+            const w = doc.createTreeWalker(clone, NodeFilter.SHOW_TEXT); let n;
+            while ((n = w.nextNode())) {
+              if (!n.nodeValue.trim()) continue;
+              const re = /\S+/g; let m;
+              while ((m = re.exec(n.nodeValue))) {
+                const r = doc.createRange(); r.setStart(n, m.index); r.setEnd(n, m.index + m[0].length);
+                const b = r.getBoundingClientRect(); if (!b.width) continue;
+                words.push({ t: m[0].replace(/[^\x20-\xFF]/g, '-'), x: b.left - base.left, y: b.top - base.top, w: b.width, h: b.height });
+              }
+            }
+          }
+        });
+        // page breaks only before list items, jobs and sections (never mid-line)
+        const pages = []; let y = 0;
+        while (y < total - 1) {
+          let end = y + U;
+          if (end >= total) end = total; else { const c = cands.filter(v => v > y + 40 && v <= end).pop(); if (c) end = c; }
+          pages.push([y, end]); y = end;
+        }
+        const { jsPDF } = window.jspdf;
+        const pdf = new jsPDF({ unit: 'px', format: [PW, PH], hotfixes: ['px_scaling'], compress: true });
+        pdf.setProperties({ title: 'Isman Vauzi - CV', author: 'Isman Vauzi', subject: 'Software Engineer CV' });
+        pdf.setFont('helvetica', 'normal');
+        pages.forEach(([a, b], i) => {
+          if (i) pdf.addPage([PW, PH]);
+          const h = b - a, tmp = document.createElement('canvas');
+          tmp.width = canvas.width; tmp.height = Math.round(h * S);
+          const ctx = tmp.getContext('2d'); ctx.fillStyle = '#fff'; ctx.fillRect(0, 0, tmp.width, tmp.height);
+          ctx.drawImage(canvas, 0, Math.round(a * S), canvas.width, tmp.height, 0, 0, canvas.width, tmp.height);
+          pdf.addImage(tmp.toDataURL('image/png'), 'PNG', 0, M, PW, h);
+          words.filter(w => w.y >= a - 1 && w.y < b - 1).forEach(w => {
+            pdf.setFontSize(10);
+            const tw = pdf.getTextWidth(w.t); if (!tw) return;
+            pdf.setFontSize(Math.min(40, Math.max(3, 10 * w.w / tw)));
+            pdf.text(w.t, w.x, M + (w.y - a) + w.h * 0.8, { renderingMode: 'invisible' });
+          });
+        });
+        pdf.save('Isman-Vauzi-CV.pdf');
+      } catch (e) { console.error(e); alert('Could not generate the PDF. Please try again or use your browser print function.'); }
+      finally { btn.disabled = false; btn.textContent = label; }
+    }
+  </script>
 </body>
+
 </html>
